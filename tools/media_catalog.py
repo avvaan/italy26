@@ -3,7 +3,8 @@
 
     .venv/bin/python tools/media_catalog.py [--media ../italy-2026-media]
 
-Оригиналы в <media>/originals/<автор>/ ТОЛЬКО читаются: ничего не удаляется,
+Оригиналы в <media>/originals/ ТОЛЬКО читаются (раскладка по дням: «NN · ДД.ММ · …/подпапка/файл»;
+старая раскладка по авторам «<автор>/файл» тоже понимается): ничего не удаляется,
 не переименовывается и не перезаписывается. Всё производное пишется рядом:
     <media>/catalog.csv      — все файлы (колонки из задания + служебные)
     <media>/candidates.csv   — длинный список кандидатов по дням
@@ -19,6 +20,7 @@ import csv
 import datetime as dt
 import json
 import math
+import re
 import subprocess
 import sys
 from collections import Counter, defaultdict
@@ -36,14 +38,70 @@ ROME = ZoneInfo("Europe/Rome")
 PHOTO = {".heic", ".heif", ".jpg", ".jpeg", ".png", ".dng"}
 VIDEO = {".mov", ".mp4", ".m4v"}
 RADIUS_KM = 15
+# Не публикуются никогда: скриншоты (чужие посты, карты с местоположением),
+# сканы документов и папка «Без даты» с пересланными файлами.
+PRIVATE_NAME = re.compile(r"(\bDL\b|\bgc\b|страница|паспорт|passport|license|boarding|билет|ticket|бронь|booking)", re.I)
+
+
+FNAME_TIME = re.compile(r"^(\d{4})-(\d{2})-(\d{2})_(\d{2})-(\d{2})-(\d{2})_")
+
+
+def load_excludes(media):
+    """<media>/exclude.csv: file,reason — исключено вручную (номера машин, жильё, посторонние)."""
+    f = media / "exclude.csv"
+    if not f.exists():
+        return {}
+    with open(f, encoding="utf-8") as fh:
+        return {r["file"]: r["reason"] for r in csv.DictReader(fh)}
+
+
+def private_reason(rel):
+    if rel.suffix.lower() == ".png":
+        return "скриншот — не публикуется"
+    if PRIVATE_NAME.search(rel.name):
+        return "похоже на документ/бронь — не публикуется"
+    if rel.parts[0].startswith("99"):
+        return "папка «Без даты» (пересланное) — не публикуется"
+    return ""
 COLUMNS = ["file", "author", "taken_at_local", "day", "stop_id", "lat", "lon", "is_duplicate_of",
            "has_people", "score", "selected"]
-EXTRA = ["kind", "camera", "time_source", "time_fix", "duration_s", "category", "faces", "big_face",
+EXTRA = ["folder", "folder_day", "kind", "camera", "time_source", "time_fix", "duration_s", "category", "faces", "big_face",
          "sharpness", "exposure", "phash", "note"]
 FOOD = ("food", "dish", "meal", "dessert", "pizza", "pasta", "bread", "cake", "wine", "coffee",
         "cheese", "fruit", "vegetable", "drink", "ice_cream", "gelato", "plate", "seafood")
 WIDE = ("landscape", "cityscape", "sky", "mountain", "outdoor", "structure", "building", "architecture",
         "panorama", "hill", "lake", "sea", "coast", "field", "street", "town", "ruins", "church", "castle")
+
+
+FOLDER_DAY = re.compile(r"^\d+\s*·\s*(\d{1,2})\.(\d{1,2})\b")
+
+
+def folder_day(rel, year):
+    m = FOLDER_DAY.match(rel.parts[0])
+    if not m:
+        return ""
+    d, mth = int(m.group(1)), int(m.group(2))
+    try:
+        return dt.date(year, mth, d).isoformat()
+    except ValueError:
+        return ""
+
+
+def load_authors(media):
+    """<media>/authors.json: {"модель камеры": "автор"} — чей телефон чей."""
+    f = media / "authors.json"
+    return json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+
+
+def zone_at(lat, lon):
+    """Часовой пояс места съёмки: время на сайте — местное (Орландо, Лиссабон, Италия)."""
+    if lat is None or in_italy(lat, lon):
+        return ROME
+    if lon < -30:
+        return ZoneInfo("America/New_York")
+    if -10 <= lon <= -6 and 36 <= lat <= 42.2:
+        return ZoneInfo("Europe/Lisbon")
+    return ROME
 
 
 def in_italy(lat, lon):
@@ -122,7 +180,7 @@ def local_time(m, lat, lon):
         fix = f"смещение {offh:+.0f} ч (время Флориды) при GPS в Италии → пересчитано в Europe/Rome"
     elif in_italy(lat, lon) and offh not in (1, 2):
         fix = f"смещение {offh:+.1f} ч при GPS в Италии → пересчитано в Europe/Rome"
-    return t.astimezone(ROME), src, fix
+    return t.astimezone(zone_at(lat, lon)), src, fix
 
 
 def exif(paths):
@@ -188,6 +246,8 @@ def category(v):
     labels = " ".join(v.get("labels", [])).lower()
     if v.get("faces", 0) or v.get("humans", 0):
         return "люди"
+    if "document" in labels or "printed_page" in labels:
+        return "текст"   # меню, таблички, листовки — в галерею только если больше нечего
     if any(w in labels for w in FOOD):
         return "еда"
     if any(w in labels for w in WIDE):
@@ -198,6 +258,7 @@ def category(v):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--media", default=str(ROOT.parent / "italy-2026-media"))
+    ap.add_argument("--videos-from", help="папка-источник, откуда читать видео без копирования")
     ap.add_argument("--min", type=int, default=8)
     ap.add_argument("--max", type=int, default=15)
     args = ap.parse_args()
@@ -209,10 +270,18 @@ def main():
 
     trip = json.loads((ROOT / "data" / "trip.json").read_text(encoding="utf-8"))
     days = {p["date"] for p in trip["pages"]}
+    year = int(trip["meta"]["date_from"][:4])
+    authors = load_authors(media)
+    excludes = load_excludes(media)
     stops = [s for s in trip["stops"]]
 
     files = sorted(p for p in orig.rglob("*") if p.is_file() and p.suffix.lower() in PHOTO | VIDEO
                    and not p.name.startswith("."))
+    if args.videos_from:
+        # видео не копируем (место на диске): метаданные читаем прямо из источника, путь — как в originals
+        vroot = Path(args.videos_from)
+        files += sorted(p for p in vroot.rglob("*") if p.is_file() and p.suffix.lower() in VIDEO
+                        and not p.name.startswith(".") and not p.relative_to(vroot).parts[0].startswith("98"))
     skipped = sorted(p for p in orig.rglob("*") if p.is_file() and p.suffix.lower() not in PHOTO | VIDEO
                      and not p.name.startswith("."))
     print(f"Файлов: {len(files)} (пропущено других: {len(skipped)}). Читаю метаданные…")
@@ -227,26 +296,45 @@ def main():
         if not isinstance(lat, (int, float)) or not isinstance(lon, (int, float)) or (lat == 0 and lon == 0):
             lat = lon = None
         t, tsrc, fix = local_time(m, lat, lon)
+        if not t:
+            mt = FNAME_TIME.match(f.name)
+            if mt:
+                t = dt.datetime(*map(int, mt.groups()), tzinfo=ROME)
+                tsrc = "имя файла (принято Europe/Rome)"
+        rel = f.relative_to(orig) if f.is_relative_to(orig) else f.relative_to(Path(args.videos_from))
+        fday = folder_day(rel, year)
         day = t.date().isoformat() if t and t.date().isoformat() in days else ""
         note = []
         if t and not day:
             note.append("дата вне поездки")
+        priv = private_reason(rel) or (excludes.get(str(rel)) and f"исключено вручную: {excludes[str(rel)]}")
+        if priv:
+            note.append(priv)
+        if not t and fday in days:
+            day = fday
+            note.append("дата по папке")
+        elif t and fday and day and fday != day:
+            note.append(f"папка говорит {fday}")
         stop_id = ""
         if lat is not None:
             best = min(stops, key=lambda s: km((lat, lon), (s["lat"], s["lon"])))
             stop_id = best["id"] if km((lat, lon), (best["lat"], best["lon"])) <= RADIUS_KM else "в дороге"
-        author = f.relative_to(orig).parts[0]
+        camera = " ".join(x for x in (m.get("Make"), m.get("Model")) if x)
+        if fday or rel.parts[0][:2].isdigit():
+            author = authors.get(camera) or authors.get(m.get("Model") or "") or "?"
+        else:
+            author = rel.parts[0]   # старая раскладка: папка = автор
         rows.append({
-            "file": str(f.relative_to(orig)), "author": author,
+            "file": str(rel), "author": author, "folder": "/".join(rel.parts[1:-1]), "folder_day": fday,
             "taken_at_local": t.strftime("%Y-%m-%d %H:%M:%S") if t else "", "day": day,
             "stop_id": stop_id, "lat": f"{lat:.5f}" if lat is not None else "",
             "lon": f"{lon:.5f}" if lon is not None else "", "is_duplicate_of": "", "has_people": "",
             "score": "", "selected": "", "kind": kind,
-            "camera": " ".join(x for x in (m.get("Make"), m.get("Model")) if x),
+            "camera": camera,
             "time_source": tsrc, "time_fix": fix,
             "duration_s": f"{m['Duration']:.1f}" if isinstance(m.get("Duration"), (int, float)) else "",
             "category": "", "faces": "", "big_face": "", "sharpness": "", "exposure": "", "phash": "",
-            "note": "; ".join(note), "_path": f, "_t": t,
+            "note": "; ".join(note), "_path": f, "_t": t, "_private": bool(priv),
         })
 
     photos = [r for r in rows if r["kind"] == "photo"]
@@ -309,12 +397,16 @@ def main():
     for day, group in by_day.items():
         if not day:
             continue
-        pool = sorted((r for r in group if not r["is_duplicate_of"]), key=lambda r: -r["_score"])
+        pool = sorted((r for r in group if not r["is_duplicate_of"] and not r["_private"]), key=lambda r: -r["_score"])
         want = min(args.max, max(args.min, len(pool) // 6))
         picked, cats = [], Counter()
         while pool and len(picked) < want:
             def gain(r):
                 g = r["_score"] - 12 * cats[r["category"]]
+                if "чат" in r["file"] or not r["camera"]:
+                    g -= 25   # пересланная копия: хуже качеством, часто меню/витрины
+                if r["category"] == "текст":
+                    g -= 30
                 if r.get("big_face") == 1 and r["has_people"]:
                     g -= 5
                 near = [p for p in picked if r["_t"] and p["_t"] and abs((r["_t"] - p["_t"]).total_seconds()) < 120]
@@ -325,7 +417,8 @@ def main():
             cats[best["category"]] += 1
         for r in group:
             r["selected"] = 1 if r in picked else 0
-        for r in sorted((r for r in group if not r["is_duplicate_of"]), key=lambda r: -r["_score"])[:60]:
+        for r in sorted((r for r in group if not r["is_duplicate_of"] and not r["_private"]),
+                        key=lambda r: -r["_score"])[:60]:
             candidates.append(r)
     for r in rows:
         if r["kind"] == "video":
@@ -361,6 +454,21 @@ def report(media, rows, skipped, trip):
     if skipped:
         L += ["", f"Пропущено файлов других типов: {len(skipped)} (" +
               ", ".join(sorted({p.suffix.lower() or 'без расширения' for p in skipped})) + ")."]
+    unknown = Counter(r["camera"] or "камера не указана" for r in rows if r["author"] == "?")
+    if unknown:
+        L += ["", "## Чьи это камеры?", "",
+              "Фото разложены по дням, а не по людям, поэтому автор определяется по модели камеры. "
+              "Впишите соответствие в `authors.json` рядом с каталогом (например `{\"Apple iPhone 15 Pro\": \"Андрей\"}`) "
+              "и запустите каталог снова.", ""]
+        L += [f"- {cam}: {n}" for cam, n in unknown.most_common()]
+    mism = [r for r in rows if "папка говорит" in r["note"]]
+    if mism:
+        L += ["", f"Дата съёмки не совпадает с папкой дня у {len(mism)} файлов (на сайте — по дате съёмки):", ""]
+        for (fd, d), n in Counter((r["folder_day"], r["day"]) for r in mism).most_common(20):
+            L.append(f"- папка {fd}, снято {d}: {n}")
+    byfolder = [r for r in rows if "дата по папке" in r["note"]]
+    if byfolder:
+        L += ["", f"Без даты в файле, день взят из названия папки: {len(byfolder)}."]
     fixes = [r for r in rows if r["time_fix"]]
     L += ["", "## Поправки времени", ""]
     if fixes:
@@ -377,6 +485,12 @@ def report(media, rows, skipped, trip):
         L += [f"- {r['file']} — {r['taken_at_local']}" for r in noplace[:40]]
         if len(noplace) > 40:
             L.append(f"- … и ещё {len(noplace) - 40}")
+    priv = [r for r in rows if r.get("_private")]
+    L += ["", "## Не публикуются никогда", "",
+          f"Исключено из отбора: {len(priv)} (скриншоты, сканы документов, папка «Без даты»). "
+          "В каталоге они остаются, на сайт не попадут.", ""]
+    for why, n in Counter(r["note"].split("; ")[-1] for r in priv).most_common():
+        L.append(f"- {why}: {n}")
     dups = [r for r in rows if r["is_duplicate_of"]]
     cross = [r for r in dups if r["author"] != next((x["author"] for x in rows if x["file"] == r["is_duplicate_of"]), r["author"])]
     L += ["", "## Дубли", "", f"Помечено дублями: {len(dups)} (из них снято разными людьми: {len(cross)}). "

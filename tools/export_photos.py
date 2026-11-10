@@ -99,7 +99,7 @@ def main():
                 "src": src,
                 "alt": before.get("alt", ""),
                 "caption": before.get("caption", ""),
-                "author": r["author"],
+                "author": "" if r["author"] in ("?", "") else r["author"],
                 "w": round(w0 * k), "h": round(h0 * k),
                 "people": people,
                 "approved": before.get("approved", not people),
