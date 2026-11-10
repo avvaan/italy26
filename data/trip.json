@@ -1,0 +1,284 @@
+{
+  "meta": {
+    "title": "Италия 2026",
+    "subtitle": "Андрей, Яна и Маша",
+    "authors": [
+      "Андрей",
+      "Яна",
+      "Маша"
+    ],
+    "date_from": "2026-10-29",
+    "date_to": "2026-11-14",
+    "timezone": "Europe/Rome",
+    "lang": "ru",
+    "published": false,
+    "cover": null,
+    "site_url": ""
+  },
+  "stops": [
+    {
+      "id": "orvieto",
+      "name": "Орвието",
+      "lat": 42.7185,
+      "lon": 12.1107,
+      "kind": "town"
+    },
+    {
+      "id": "montefiascone",
+      "name": "Монтефьясконе",
+      "lat": 42.537,
+      "lon": 12.031,
+      "kind": "town"
+    },
+    {
+      "id": "capodimonte",
+      "name": "Каподимонте",
+      "lat": 42.547,
+      "lon": 11.906,
+      "kind": "town"
+    },
+    {
+      "id": "tuscania",
+      "name": "Тускания",
+      "lat": 42.4206,
+      "lon": 11.8706,
+      "kind": "stay",
+      "note": "жильё 10–13.11"
+    },
+    {
+      "id": "tarquinia",
+      "name": "Тарквиния",
+      "lat": 42.254,
+      "lon": 11.758,
+      "kind": "site",
+      "note": "этрусский некрополь и музей"
+    },
+    {
+      "id": "viterbo-terme",
+      "name": "Термы Витербо",
+      "lat": 42.4207,
+      "lon": 12.0675,
+      "kind": "site"
+    },
+    {
+      "id": "fiumicino",
+      "name": "Фьюмичино",
+      "lat": 41.8003,
+      "lon": 12.2389,
+      "kind": "airport"
+    },
+    {
+      "id": "lisbon",
+      "name": "Лиссабон",
+      "lat": 38.7223,
+      "lon": -9.1393,
+      "kind": "transit"
+    }
+  ],
+  "pages": [
+    {
+      "date": "2026-10-29",
+      "title": null,
+      "stops": [],
+      "text": [],
+      "photos": [],
+      "audio": [],
+      "todo": "Маршрут дня не указан: добавить места и рассказ."
+    },
+    {
+      "date": "2026-10-30",
+      "title": null,
+      "stops": [],
+      "text": [],
+      "photos": [],
+      "audio": [],
+      "todo": "Маршрут дня не указан: добавить места и рассказ."
+    },
+    {
+      "date": "2026-10-31",
+      "title": null,
+      "stops": [],
+      "text": [],
+      "photos": [],
+      "audio": [],
+      "todo": "Маршрут дня не указан: добавить места и рассказ."
+    },
+    {
+      "date": "2026-11-01",
+      "title": null,
+      "stops": [],
+      "text": [],
+      "photos": [],
+      "audio": [],
+      "todo": "Маршрут дня не указан: добавить места и рассказ."
+    },
+    {
+      "date": "2026-11-02",
+      "title": null,
+      "stops": [],
+      "text": [],
+      "photos": [],
+      "audio": [],
+      "todo": "Маршрут дня не указан: добавить места и рассказ."
+    },
+    {
+      "date": "2026-11-03",
+      "title": null,
+      "stops": [],
+      "text": [],
+      "photos": [],
+      "audio": [],
+      "todo": "Маршрут дня не указан: добавить места и рассказ."
+    },
+    {
+      "date": "2026-11-04",
+      "title": null,
+      "stops": [],
+      "text": [],
+      "photos": [],
+      "audio": [],
+      "todo": "Маршрут дня не указан: добавить места и рассказ."
+    },
+    {
+      "date": "2026-11-05",
+      "title": null,
+      "stops": [],
+      "text": [],
+      "photos": [],
+      "audio": [],
+      "todo": "Маршрут дня не указан: добавить места и рассказ."
+    },
+    {
+      "date": "2026-11-06",
+      "title": null,
+      "stops": [],
+      "text": [],
+      "photos": [],
+      "audio": [],
+      "todo": "Маршрут дня не указан: добавить места и рассказ."
+    },
+    {
+      "date": "2026-11-07",
+      "title": null,
+      "stops": [],
+      "text": [],
+      "photos": [],
+      "audio": [],
+      "todo": "Маршрут дня не указан: добавить места и рассказ."
+    },
+    {
+      "date": "2026-11-08",
+      "title": null,
+      "stops": [],
+      "text": [],
+      "photos": [],
+      "audio": [],
+      "todo": "Маршрут дня не указан: добавить места и рассказ."
+    },
+    {
+      "date": "2026-11-09",
+      "title": null,
+      "stops": [],
+      "text": [],
+      "photos": [],
+      "audio": [],
+      "todo": "Маршрут дня не указан: добавить места и рассказ."
+    },
+    {
+      "date": "2026-11-10",
+      "title": "Орвието, Монтефьясконе, Каподимонте",
+      "stops": [
+        "orvieto",
+        "montefiascone",
+        "capodimonte",
+        "tuscania"
+      ],
+      "text": [],
+      "photos": [],
+      "audio": [
+        "road-1",
+        "road-2",
+        "road-3",
+        "road-4"
+      ]
+    },
+    {
+      "date": "2026-11-11",
+      "title": "Тарквиния и термы Витербо",
+      "stops": [
+        "tuscania",
+        "tarquinia",
+        "viterbo-terme"
+      ],
+      "text": [],
+      "photos": [],
+      "audio": [],
+      "todo": "Уточнить, что было 11-го, а что 12-го: Тарквиния или термы."
+    },
+    {
+      "date": "2026-11-12",
+      "title": "Тарквиния и термы Витербо",
+      "stops": [
+        "tuscania",
+        "tarquinia",
+        "viterbo-terme"
+      ],
+      "text": [],
+      "photos": [],
+      "audio": [],
+      "todo": "Уточнить, что было 11-го, а что 12-го: Тарквиния или термы."
+    },
+    {
+      "date": "2026-11-13",
+      "title": "Фьюмичино — Лиссабон",
+      "stops": [
+        "tuscania",
+        "fiumicino",
+        "lisbon"
+      ],
+      "text": [],
+      "photos": [],
+      "audio": []
+    },
+    {
+      "date": "2026-11-14",
+      "title": "Домой",
+      "stops": [
+        "lisbon"
+      ],
+      "text": [],
+      "photos": [],
+      "audio": []
+    }
+  ],
+  "audio": [
+    {
+      "id": "road-1",
+      "title": "В дороге. Часть 1",
+      "file": "assets/audio/road-1.mp3",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "road-2",
+      "title": "В дороге. Часть 2",
+      "file": "assets/audio/road-2.mp3",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "road-3",
+      "title": "В дороге. Часть 3",
+      "file": "assets/audio/road-3.mp3",
+      "date": "2026-11-10"
+    },
+    {
+      "id": "road-4",
+      "title": "В дороге. Часть 4",
+      "file": "assets/audio/road-4.mp3",
+      "date": "2026-11-10"
+    }
+  ],
+  "film": {
+    "status": "soon",
+    "url": null
+  }
+}

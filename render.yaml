@@ -1,0 +1,18 @@
+# Render: статический сайт. Деплой только вручную и только после «публикуй» от о. Андрея.
+services:
+  - type: web
+    name: italy-2026
+    runtime: static
+    buildCommand: python3 tools/build.py
+    staticPublishPath: .
+    autoDeploy: false
+    headers:
+      - path: /photos/*
+        name: Cache-Control
+        value: public, max-age=86400  # имена 1..n переиспользуются при новом отборе
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=604800
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
