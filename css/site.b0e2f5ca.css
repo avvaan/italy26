@@ -211,14 +211,15 @@ audio { width: 100%; height: 40px; }
 .hero-media img { object-fit: cover; will-change: transform; }
 .hero-media .ph-cap { display: none; }
 .hero::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(to bottom, rgba(35, 33, 30, .45), rgba(35, 33, 30, 0) 16%), var(--scrim); }
+  background: linear-gradient(to bottom, rgba(35, 33, 30, .45), rgba(35, 33, 30, 0) 16%),
+    linear-gradient(to right, rgba(20, 18, 15, .55), rgba(20, 18, 15, .25) 38%, rgba(20, 18, 15, 0) 62%), var(--scrim); }
 .hero-text {
   position: relative; z-index: 2; pointer-events: none;
   padding: 0 var(--gutter) clamp(56px, 9vh, 104px); max-width: 1100px;
   text-shadow: 0 1px 18px rgba(20, 18, 15, .45);
 }
 .hero-text a { pointer-events: auto; }
-.hero .eyebrow { color: #f0c9b6; }
+.hero .eyebrow { color: #f6d6c6; text-shadow: 0 1px 10px rgba(20, 18, 15, .7); }
 .hero-date { display: flex; align-items: flex-end; gap: 14px; margin: 0 0 clamp(12px, 2vh, 24px); }
 .hero-date .num { font-family: var(--display); font-size: clamp(5.5rem, 16vw, 12rem); line-height: .78; }
 .hero-date .mon { font-family: var(--display); text-transform: uppercase; letter-spacing: .16em; font-size: clamp(.9375rem, 1.6vw, 1.25rem); line-height: 1.45; padding-bottom: .25em; }
@@ -237,6 +238,10 @@ audio { width: 100%; height: 40px; }
 .hero.no-photo .hero-text { text-shadow: none; padding-bottom: clamp(32px, 5vw, 64px); }
 .hero.no-photo .eyebrow, .hero.no-photo .places li::after { color: var(--terra); }
 .hero.no-photo .hero-cue { display: none; }
+.hero-home .display { font-size: clamp(4.5rem, 17vw, 14rem); max-width: none; }
+.hero-home .cover-dates { color: var(--on-photo); margin-top: clamp(14px, 2vh, 24px); }
+.hero-home .cover-who { color: var(--on-photo); opacity: .88; }
+.hero-home .hero-media img { width: 100%; height: 100%; object-fit: cover; }
 @media (max-width: 599px) { .hero-cue { display: none; } }
 
 /* фото: подпись лежит на кадре, на мягком затемнении снизу */

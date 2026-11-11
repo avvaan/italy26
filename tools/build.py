@@ -246,21 +246,18 @@ def build_index(trip, stops, audio, pages, preview):
     if m.get("cover"):
         cover = next((ph for ph in allph if ph["src"] == m["cover"]), None)
     cover = cover or (allph[0] if allph else None)
-    fig = ""
-    if cover:
-        fig = (f'<figure class="cover-photo">{img_tag(cover, "", "(min-width: 900px) 60vw, 100vw", eager=True)}'
-               f'{"<figcaption>" + e(cover.get("caption")) + "</figcaption>" if cover.get("caption") else ""}</figure>')
-    out.append(f"""<section class="cover{' has-photo' if cover else ''}">
-  <div class="cover-text">
+    media = (f'<div class="hero-media">{img_tag(cover, "", "100vw", eager=True)}</div>' if cover else "")
+    out.append(f"""<header class="hero hero-home{'' if cover else ' no-photo'}">
+  {media}
+  <div class="hero-text">
     <p class="eyebrow">Семейная поездка</p>
     <h1 class="display">Италия</h1>
     <p class="cover-dates">{e(dates)}</p>
     <p class="cover-who">{e(m['subtitle'])}</p>
   </div>
-  {fig}
-</section>
+  <a class="hero-cue" href="#route">Листайте</a>
+</header>
 """)
-    out.append(stripe())
 
     # карта
     out.append("""<section class="block" id="route" aria-labelledby="route-h">
