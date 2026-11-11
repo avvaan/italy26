@@ -4,9 +4,9 @@
     python3 tools/build.py            # публичная сборка: только одобренное
     python3 tools/build.py --preview  # для о. Андрея: всё, неодобренное помечено
 
-Пишет index.html, days/<дата>.html и data/trip.js. Если есть data/trip.en.json (переводы:
-pages/photos/stops по ключам), рядом собирается английская версия: en/index.html, en/days/…,
-data/trip.en.js. Только стандартная библиотека.
+Исходные данные — по-русски (data/trip.json), переводы — в data/trip.en.json (pages/photos/stops
+по ключам). Английская версия — в корне сайта (index.html, days/…), русская — в ru/ (ru/index.html,
+ru/days/…); данные для карт — data/trip.en.js и data/trip.ru.js. Только стандартная библиотека.
 """
 import argparse
 import datetime as dt
@@ -74,6 +74,7 @@ STRINGS = {
         "desc_pending": "Description not yet approved",
     },
 }
+DEFAULT = "en"       # язык в корне сайта; второй язык — в /<код>/ (сейчас русский в /ru/)
 LANG = "ru"          # текущий язык сборки
 A = ""               # добавка к пути до общих файлов (css, js, photos): "" для русского, "../" для /en/
 
@@ -226,7 +227,16 @@ def write_trip_js(trip, stops, pages, rt):
 
 
 def trip_js():
-    return "data/trip.js" if LANG == "ru" else f"data/trip.{LANG}.js"
+    return f"data/trip.{LANG}.js"
+
+
+def lang_root(lang):
+    return "" if lang == DEFAULT else f"{lang}/"
+
+
+def up_to_site(path):
+    """От текущей страницы до корня сайта."""
+    return "../" * path.count("/") + ("" if LANG == DEFAULT else "../")
 
 
 # --------------------------------------------------------------- fragments
@@ -239,17 +249,13 @@ LEAFLET_JS = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
 
 def alt_links(path):
     """hreflang: та же страница на другом языке. path — от корня языка (index.html, days/…)."""
-    up = "../" * path.count("/")
-    ru = (up + "../" if LANG == "en" else up) + path
-    en = (up if LANG == "en" else up + "en/") + path
-    return (f'<link rel="alternate" hreflang="ru" href="{ru}">\n'
-            f'<link rel="alternate" hreflang="en" href="{en}">\n')
+    up = up_to_site(path)
+    return "".join(f'<link rel="alternate" hreflang="{l}" href="{up}{lang_root(l)}{path}">\n' for l in ("en", "ru"))
 
 
 def lang_switch(path):
-    up = "../" * path.count("/")
-    href = (up + "../" + path) if LANG == "en" else (up + "en/" + path)
     o = other_lang()
+    href = up_to_site(path) + lang_root(o) + path
     return (f'<a class="lang-switch" href="{href}" hreflang="{o}" lang="{o}" '
             f'title="{STRINGS[o]["lang_name"]}">{o.upper()}</a>')
 
@@ -647,8 +653,8 @@ def apply_en(trip, en):
 
 def build_lang(trip_data, preview, lang):
     global LANG, A
-    LANG, A = lang, ("" if lang == "ru" else "../")
-    out_root = ROOT if lang == "ru" else ROOT / lang
+    LANG, A = lang, ("" if lang == DEFAULT else "../")
+    out_root = ROOT if lang == DEFAULT else ROOT / lang
     out_root.mkdir(exist_ok=True)
     trip, stops, audio, pages = load(preview, trip_data)
     rt = route(pages, stops)
@@ -670,15 +676,14 @@ def main():
     args = ap.parse_args()
     base = json.loads(TRIP.read_text(encoding="utf-8"))
     trip, pages, rt = build_lang(json.loads(json.dumps(base)), args.preview, "ru")
-    if TRIP_EN.exists():
-        en = json.loads(TRIP_EN.read_text(encoding="utf-8"))
-        build_lang(apply_en(base, en), args.preview, "en")
+    en = json.loads(TRIP_EN.read_text(encoding="utf-8"))
+    build_lang(apply_en(base, en), args.preview, "en")
     robots = "User-agent: *\nAllow: /\n" if trip["meta"].get("published") else "User-agent: *\nDisallow: /\n"
     (ROOT / "robots.txt").write_text(robots, encoding="utf-8")
     clean_assets()
     mode = "предпросмотр" if args.preview else "публичная"
-    print(f"Собрано ({mode}): index.html, {len(pages)} страниц дней, data/trip.js, точек маршрута: {len(rt)}"
-          + (" + английская версия в en/" if TRIP_EN.exists() else ""))
+    print(f"Собрано ({mode}): {len(pages)} дней, точек маршрута: {len(rt)}; английская версия в корне,"
+          f" русская в ru/")
     if not trip["meta"].get("published"):
         print("meta.published = false → страницы помечены noindex")
     for w in dict.fromkeys(warnings):

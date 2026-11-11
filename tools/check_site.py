@@ -36,8 +36,8 @@ class Refs(HTMLParser):
 def main():
     bad = []
     pages = [ROOT / "index.html"] + sorted((ROOT / "days").glob("*.html"))
-    if (ROOT / "en" / "index.html").exists():
-        pages += [ROOT / "en" / "index.html"] + sorted((ROOT / "en" / "days").glob("*.html"))
+    if (ROOT / "ru" / "index.html").exists():
+        pages += [ROOT / "ru" / "index.html"] + sorted((ROOT / "ru" / "days").glob("*.html"))
     ids = {}
     parsed = {}
     for p in pages:
@@ -67,7 +67,7 @@ def main():
             bad.append("в photos/ найдены EXIF/XMP:\n" + out[:2000])
         print("Фото: метаданные проверены (exiftool -gps:all -r photos/ — пусто)" if not out.strip() else "")
 
-    local = ["index.html", "css/site.css", "js/map.js", "data/trip.js"]
+    local = ["index.html", "css/site.css", "js/map.js", "data/trip.en.js"]
     kb = sum((ROOT / f).stat().st_size for f in local) / 1024
     print(f"Главная, свои файлы без фото: {kb:.0f} КБ (+ Leaflet ≈ 45 КБ gzip и шрифты с Google Fonts)")
     if kb > LIMIT_KB:
