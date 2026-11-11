@@ -73,120 +73,1492 @@
       "lat": 38.7223,
       "lon": -9.1393,
       "kind": "transit"
+    },
+    {
+      "id": "rome",
+      "name": "Рим",
+      "lat": 41.9028,
+      "lon": 12.4964,
+      "kind": "town"
+    },
+    {
+      "id": "vatican",
+      "name": "Ватикан",
+      "lat": 41.9022,
+      "lon": 12.4539,
+      "kind": "site",
+      "note": "собор Святого Петра"
+    },
+    {
+      "id": "castel-santangelo",
+      "name": "Замок Святого Ангела",
+      "lat": 41.9031,
+      "lon": 12.4663,
+      "kind": "site"
+    },
+    {
+      "id": "forum",
+      "name": "Римский форум и Палатин",
+      "lat": 41.8925,
+      "lon": 12.4853,
+      "kind": "site"
+    },
+    {
+      "id": "capitol",
+      "name": "Капитолий",
+      "lat": 41.8933,
+      "lon": 12.4829,
+      "kind": "site"
+    },
+    {
+      "id": "appia",
+      "name": "Аппиева дорога",
+      "lat": 41.856,
+      "lon": 12.516,
+      "kind": "site"
+    },
+    {
+      "id": "montecassino",
+      "name": "Монтекассино",
+      "lat": 41.4903,
+      "lon": 13.8139,
+      "kind": "site",
+      "note": "аббатство"
+    },
+    {
+      "id": "naples",
+      "name": "Неаполь",
+      "lat": 40.8518,
+      "lon": 14.2681,
+      "kind": "town"
+    },
+    {
+      "id": "pompeii",
+      "name": "Помпеи",
+      "lat": 40.7491,
+      "lon": 14.4847,
+      "kind": "site"
+    },
+    {
+      "id": "agerola",
+      "name": "Аджерола",
+      "lat": 40.6385,
+      "lon": 14.542,
+      "kind": "town"
+    },
+    {
+      "id": "amalfi",
+      "name": "Амальфи",
+      "lat": 40.634,
+      "lon": 14.6027,
+      "kind": "town"
+    },
+    {
+      "id": "herculaneum",
+      "name": "Геркуланум",
+      "lat": 40.8059,
+      "lon": 14.3478,
+      "kind": "site"
+    },
+    {
+      "id": "porano",
+      "name": "Порано",
+      "lat": 42.6826,
+      "lon": 12.1016,
+      "kind": "town"
+    },
+    {
+      "id": "civita",
+      "name": "Чивита-ди-Баньореджо",
+      "lat": 42.6276,
+      "lon": 12.1137,
+      "kind": "town"
+    },
+    {
+      "id": "bolsena",
+      "name": "Больсена",
+      "lat": 42.6449,
+      "lon": 11.9858,
+      "kind": "town"
     }
   ],
   "pages": [
     {
       "date": "2026-10-29",
-      "title": null,
+      "title": "Вылет из Орландо",
       "stops": [],
       "text": [],
-      "photos": [],
-      "audio": [],
-      "todo": "Маршрут дня не указан: добавить места и рассказ."
+      "photos": [
+        {
+          "src": "photos/2026-10-29/1",
+          "alt": "Трое за столиком в кафе аэропорта Орландо перед вылетом",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-10-29/2",
+          "alt": "Селфи в салоне самолёта",
+          "caption": "",
+          "author": "Яна",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        }
+      ],
+      "audio": []
     },
     {
       "date": "2026-10-30",
-      "title": null,
-      "stops": [],
+      "title": "Лиссабон → Рим",
+      "stops": [
+        "lisbon",
+        "rome"
+      ],
       "text": [],
-      "photos": [],
-      "audio": [],
-      "todo": "Маршрут дня не указан: добавить места и рассказ."
+      "photos": [
+        {
+          "src": "photos/2026-10-30/1",
+          "alt": "Табло вылетов в аэропорту Лиссабона",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        }
+      ],
+      "audio": []
     },
     {
       "date": "2026-10-31",
-      "title": null,
-      "stops": [],
+      "title": "Рим — Ватикан",
+      "stops": [
+        "rome",
+        "vatican",
+        "castel-santangelo"
+      ],
       "text": [],
-      "photos": [],
-      "audio": [],
-      "todo": "Маршрут дня не указан: добавить места и рассказ."
+      "photos": [
+        {
+          "src": "photos/2026-10-31/1",
+          "alt": "Шаг по деревянному мостику у Ватиканских стен",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-10-31/2",
+          "alt": "Заросшая лестница вдоль старой стены в Риме",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-10-31/3",
+          "alt": "Оранжевый римский дом с зелёными ставнями",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-10-31/4",
+          "alt": "Ещё шаг по мостику у Ватикана",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-10-31/5",
+          "alt": "Латинская надпись на мраморной доске в стене",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-10-31/6",
+          "alt": "Бронзовая скульптура «Ангелы, сами того не ведая» на площади Святого Петра",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-10-31/7",
+          "alt": "Вид сквозь двери в главный неф собора Святого Петра",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-10-31/8",
+          "alt": "Мозаичная икона Рождества в золотой раме",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-10-31/9",
+          "alt": "Фреска со сценой мученичества в замке Святого Ангела",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-10-31/10",
+          "alt": "Улица Ватикана с видом на ворота",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-10-31/11",
+          "alt": "Расписной свод в покоях замка Святого Ангела",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-10-31/12",
+          "alt": "Готический полиптих с Мадонной и святыми в музее замка",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-10-31/13",
+          "alt": "Вид на Рим и Витториано с террасы замка Святого Ангела",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-10-31/14",
+          "alt": "Две девушки отдыхают у стены замка Святого Ангела",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-10-31/15",
+          "alt": "Меловая доска с меню у римского кафе",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        }
+      ],
+      "audio": []
     },
     {
       "date": "2026-11-01",
-      "title": null,
-      "stops": [],
+      "title": "Древний Рим",
+      "stops": [
+        "forum",
+        "capitol"
+      ],
       "text": [],
-      "photos": [],
+      "photos": [
+        {
+          "src": "photos/2026-11-01/1",
+          "alt": "Неф базилики со сводом и апсидной мозаикой",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-01/2",
+          "alt": "У Колизея",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-01/3",
+          "alt": "Капелла с мраморной статуей святой при свечах",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-01/4",
+          "alt": "Золотая апсидная мозаика с Богородицей и святыми",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-01/5",
+          "alt": "Толпа на дороге к Колизею",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-01/6",
+          "alt": "Неф базилики Святых Космы и Дамиана с мозаикой в апсиде",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-01/7",
+          "alt": "Апсидная мозаика: Христос на облаках",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-01/8",
+          "alt": "Алтарный образ в боковой капелле",
+          "caption": "",
+          "author": "",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-01/9",
+          "alt": "Огромный неаполитанский вертеп за стеклом",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-01/10",
+          "alt": "Руины храма с поваленными колоннами у Форума",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-01/11",
+          "alt": "Фасад древнего храма у Римского форума",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-01/12",
+          "alt": "Меню завтрака в кафе",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-01/13",
+          "alt": "Две девушки с чашками кофе в кафе",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-01/14",
+          "alt": "Стенд о Форуме Августа на кирпичной стене",
+          "caption": "",
+          "author": "",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-01/15",
+          "alt": "Руины Форума и современный дом над ними",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        }
+      ],
       "audio": [],
-      "todo": "Маршрут дня не указан: добавить места и рассказ."
+      "todo": "В папке дня есть подпапка «Собор Святого Петра и Ватикан» — проверить, не 31.10 ли это."
     },
     {
       "date": "2026-11-02",
-      "title": null,
-      "stops": [],
+      "title": "Аппиева дорога и Монтекассино",
+      "stops": [
+        "appia",
+        "montecassino",
+        "naples"
+      ],
       "text": [],
-      "photos": [],
-      "audio": [],
-      "todo": "Маршрут дня не указан: добавить места и рассказ."
+      "photos": [
+        {
+          "src": "photos/2026-11-02/1",
+          "alt": "Мозаичный купол в крипте Монтекассино",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-02/2",
+          "alt": "Мозаика с ангелом в крипте Монтекассино",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-02/3",
+          "alt": "Фото руин аббатства после бомбёжки 1944 года на выставке",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-02/4",
+          "alt": "Снимок разрушенного Монтекассино, панно на стене музея",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-02/5",
+          "alt": "Резной оклад старинной книги в музее аббатства",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-02/6",
+          "alt": "Витрина неаполитанской кондитерской вечером",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-02/7",
+          "alt": "Девушка на ночной неаполитанской улице у граффити «Layla»",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-02/8",
+          "alt": "Кованая решётка уличной часовни в Неаполе",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        }
+      ],
+      "audio": []
     },
     {
       "date": "2026-11-03",
-      "title": null,
-      "stops": [],
+      "title": "Неаполь",
+      "stops": [
+        "naples"
+      ],
       "text": [],
-      "photos": [],
-      "audio": [],
-      "todo": "Маршрут дня не указан: добавить места и рассказ."
+      "photos": [
+        {
+          "src": "photos/2026-11-03/1",
+          "alt": "Майоликовая скамья в клуатре Санта-Кьяра",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-03/2",
+          "alt": "Узкая улица Неаполя с овощной лавкой",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-03/3",
+          "alt": "Рыбный прилавок на неаполитанском рынке",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-03/4",
+          "alt": "Улица с колокольней в строительных лесах",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-03/5",
+          "alt": "Ноги в голубых кроссовках на брусчатке",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-03/6",
+          "alt": "Две девушки за столиком кафе на площади",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-03/7",
+          "alt": "Стёртые ступени неаполитанской церкви",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-03/8",
+          "alt": "Многолюдная улица исторического центра Неаполя",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-03/9",
+          "alt": "Майоликовая скамья с сельской сценой",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-03/10",
+          "alt": "Золотая вышитая хоругвь в музее",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-03/11",
+          "alt": "Обед: тарелка пасты на столе с голубой плиткой",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-03/12",
+          "alt": "Спагетти с вонголе и бокал белого вина",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-03/13",
+          "alt": "Старый неаполитанский дом с бельём на балконах",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-03/14",
+          "alt": "Розовая церковь с колоннами на улице Неаполя",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-03/15",
+          "alt": "Вечер в траттории: гости танцуют на столах",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1012,
+          "people": true,
+          "approved": true
+        }
+      ],
+      "audio": []
     },
     {
       "date": "2026-11-04",
-      "title": null,
-      "stops": [],
+      "title": "Неаполь, второй день",
+      "stops": [
+        "naples"
+      ],
       "text": [],
-      "photos": [],
-      "audio": [],
-      "todo": "Маршрут дня не указан: добавить места и рассказ."
+      "photos": [
+        {
+          "src": "photos/2026-11-04/1",
+          "alt": "Расписной золочёный потолок неаполитанской церкви",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-04/2",
+          "alt": "Терракотовый фасад с зелёными ставнями",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-04/3",
+          "alt": "Золотая дарохранительница с надписью «Deus absconditus»",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-04/4",
+          "alt": "Мраморный алтарь с раками и свечами",
+          "caption": "",
+          "author": "",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-04/5",
+          "alt": "Неф церкви с деревянными скамьями",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-04/6",
+          "alt": "Лавка фигурок для вертепов на Сан-Грегорио-Армено",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-04/7",
+          "alt": "Статуя лежащего святого на красном покрове",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-04/8",
+          "alt": "Витрина антикварной лавки",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-04/9",
+          "alt": "Скамейка «для ждущих мужей» у магазина",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-04/10",
+          "alt": "Чёрное облачение с серебряной вышивкой в музее",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-04/11",
+          "alt": "Белое облачение с золотой вышивкой в музее",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-04/12",
+          "alt": "Площадь у оранжевого палаццо, мотороллер",
+          "caption": "",
+          "author": "Яна",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-04/13",
+          "alt": "Арка во двор неаполитанского палаццо",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-04/14",
+          "alt": "Сувенирная лавка с куклами и масками",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        }
+      ],
+      "audio": []
     },
     {
       "date": "2026-11-05",
-      "title": null,
-      "stops": [],
+      "title": "Помпеи и Аджерола",
+      "stops": [
+        "pompeii",
+        "agerola"
+      ],
       "text": [],
-      "photos": [],
-      "audio": [],
-      "todo": "Маршрут дня не указан: добавить места и рассказ."
+      "photos": [
+        {
+          "src": "photos/2026-11-05/1",
+          "alt": "Римская повозка и амфоры в Помпеях",
+          "caption": "",
+          "author": "",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-05/2",
+          "alt": "Улица Помпей между высокими стенами",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-05/3",
+          "alt": "Ниша в оштукатуренной стене помпейского дома",
+          "caption": "",
+          "author": "",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-05/4",
+          "alt": "Мостовая из базальтовых плит в Помпеях",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-05/5",
+          "alt": "Мраморный столик у имплювия в атриуме",
+          "caption": "",
+          "author": "",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-05/6",
+          "alt": "Обед за столом с пиццей",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-05/7",
+          "alt": "Отдых на траве над руинами Помпей",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-05/8",
+          "alt": "Кофе с видом на Помпеи и горы",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-05/9",
+          "alt": "Взгляд на руины Помпей и Везувий",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-05/10",
+          "alt": "Узкий переулок с мхом между стенами",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-05/11",
+          "alt": "Обломок фрески со звёздами на штукатурке",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-05/12",
+          "alt": "Главная улица Помпей с камнями для перехода",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-05/13",
+          "alt": "Переулок Помпей в контровом солнце",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-05/14",
+          "alt": "Полки винного магазина",
+          "caption": "",
+          "author": "",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-05/15",
+          "alt": "Бутылки местного вина на полке",
+          "caption": "",
+          "author": "",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        }
+      ],
+      "audio": []
     },
     {
       "date": "2026-11-06",
-      "title": null,
-      "stops": [],
+      "title": "Амальфи",
+      "stops": [
+        "agerola",
+        "amalfi"
+      ],
       "text": [],
-      "photos": [],
-      "audio": [],
-      "todo": "Маршрут дня не указан: добавить места и рассказ."
+      "photos": [
+        {
+          "src": "photos/2026-11-06/1",
+          "alt": "Скалы над тропой к Амальфи",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-06/2",
+          "alt": "Указатели тропы на скале: Амальфи, Фьордо-ди-Фуроре",
+          "caption": "",
+          "author": "",
+          "w": 1351,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-06/3",
+          "alt": "Среди виноградника в Аджероле",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-06/4",
+          "alt": "Старый дом на склоне по пути вниз",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-06/5",
+          "alt": "Лестница над морем, увитая плющом",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-06/6",
+          "alt": "Каменная лестница тропы среди скал",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-06/7",
+          "alt": "Статуя апостола Андрея в крипте собора Амальфи",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-06/8",
+          "alt": "Главный алтарь собора в Амальфи",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        }
+      ],
+      "audio": []
     },
     {
       "date": "2026-11-07",
-      "title": null,
-      "stops": [],
+      "title": "Геркуланум и Орвието",
+      "stops": [
+        "herculaneum",
+        "orvieto"
+      ],
       "text": [],
-      "photos": [],
-      "audio": [],
-      "todo": "Маршрут дня не указан: добавить места и рассказ."
+      "photos": [
+        {
+          "src": "photos/2026-11-07/1",
+          "alt": "Узкий проход между стенами в Геркулануме",
+          "caption": "",
+          "author": "",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-07/2",
+          "alt": "Улица Геркуланума с мостовой",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-07/3",
+          "alt": "Лестница с замшелыми ступенями в Геркулануме",
+          "caption": "",
+          "author": "",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-07/4",
+          "alt": "Купальня в форме креста в термах Геркуланума",
+          "caption": "",
+          "author": "",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-07/5",
+          "alt": "Мох и камень в древнем дворе",
+          "caption": "",
+          "author": "",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-07/6",
+          "alt": "Мраморный рельеф со сценой из мифа",
+          "caption": "",
+          "author": "",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-07/7",
+          "alt": "Обугленный деревянный шкаф с посудой в музее",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-07/8",
+          "alt": "Фреска с пирующими в музее Геркуланума",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-07/9",
+          "alt": "Вечерняя месса в церкви Орвието",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-07/10",
+          "alt": "Вечерняя улица Орвието",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-07/11",
+          "alt": "Афиша пиццы «Американа» с картошкой",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-07/12",
+          "alt": "Пиццерия на вечерней улице Орвието",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": true,
+          "approved": true
+        }
+      ],
+      "audio": []
     },
     {
       "date": "2026-11-08",
-      "title": null,
-      "stops": [],
+      "title": "Порано, Чивита, Больсена",
+      "stops": [
+        "porano",
+        "civita",
+        "bolsena"
+      ],
       "text": [],
-      "photos": [],
-      "audio": [],
-      "todo": "Маршрут дня не указан: добавить места и рассказ."
+      "photos": [
+        {
+          "src": "photos/2026-11-08/1",
+          "alt": "Мощёный переулок в Порано",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-08/2",
+          "alt": "Шиповник в поле под Порано",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-08/3",
+          "alt": "Чивита-ди-Баньореджо на скале",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-08/4",
+          "alt": "Лестница с цветочными горшками в Чивите",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-08/5",
+          "alt": "Девушка на улочке Чивиты",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-08/6",
+          "alt": "В дверях лавки в Чивите",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-08/7",
+          "alt": "Каменный дворик в Чивите",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-08/8",
+          "alt": "Узкая улочка Чивиты с фонарём",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-08/9",
+          "alt": "Закат на озере Больсена",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-08/10",
+          "alt": "Икона святой Христины на стене в Больсене",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        }
+      ],
+      "audio": []
     },
     {
       "date": "2026-11-09",
-      "title": null,
-      "stops": [],
+      "title": "Лошади, термы, Орвието",
+      "stops": [
+        "orvieto"
+      ],
       "text": [],
-      "photos": [],
+      "photos": [
+        {
+          "src": "photos/2026-11-09/1",
+          "alt": "Конная прогулка по аллее с жёлтой листвой",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-09/2",
+          "alt": "Две всадницы перед прогулкой в Ла Каччата",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-09/3",
+          "alt": "Всадницы среди олив",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-09/4",
+          "alt": "Всадница на белой лошади в поле",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-09/5",
+          "alt": "Старая каменная купальня с водой",
+          "caption": "",
+          "author": "",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-09/6",
+          "alt": "Собор Орвието ночью",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-09/7",
+          "alt": "Мозаичный пилястр фасада собора Орвието",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-09/8",
+          "alt": "Ужин: мясо с картофелем и красной капустой",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        }
+      ],
       "audio": [],
-      "todo": "Маршрут дня не указан: добавить места и рассказ."
+      "todo": "Где были лошади и какие термы? Добавить точки."
     },
     {
       "date": "2026-11-10",
-      "title": "Орвието, Монтефьясконе, Каподимонте",
+      "title": "Монтефьясконе и Тускания",
       "stops": [
         "orvieto",
         "montefiascone",
@@ -194,7 +1566,158 @@
         "tuscania"
       ],
       "text": [],
-      "photos": [],
+      "photos": [
+        {
+          "src": "photos/2026-11-10/1",
+          "alt": "Брусчатка улицы Орвието",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-10/2",
+          "alt": "Туя в горшке у старой стены",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-10/3",
+          "alt": "Окно с решёткой в стене из туфа",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-10/4",
+          "alt": "Мокрая брусчатка после дождя",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-10/5",
+          "alt": "Лавка расписной керамики в Орвието",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-10/6",
+          "alt": "Мозаика из камня на площади",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-10/7",
+          "alt": "Полосатый фасад и лестница к боковому входу собора",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-10/8",
+          "alt": "Замшелые каменные ступени",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-10/9",
+          "alt": "Бронзовый символ евангелиста на фасаде собора Орвието",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-10/10",
+          "alt": "Рельефы пилона собора Орвието",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-10/11",
+          "alt": "Собор Орвието над крышами",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1350,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-10/12",
+          "alt": "Прогулка под красным зонтом по Монтефьясконе",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1012,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-10/13",
+          "alt": "Бутылка местного вина в лавке Монтефьясконе",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1350,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-10/14",
+          "alt": "Фреска с давильней винограда на стене",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1012,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-10/15",
+          "alt": "Две девушки на траве в парке Каподимонте",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1012,
+          "people": true,
+          "approved": true
+        }
+      ],
       "audio": [
         "road-1",
         "road-2",
