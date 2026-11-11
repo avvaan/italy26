@@ -4,14 +4,15 @@
    тихие кнопки-чипы с радиусом 2px, тонкая полоса-разделитель. */
 
 :root {
-  --stone: #efe7da;      /* травертин, фон */
-  --stone-2: #e4d9c7;    /* плитка, заглушки, чипы */
-  --paper: #f7f2ea;      /* светлый камень */
-  --vein: #d6c8b2;       /* прожилка, линии */
-  --ink: #23211e;        /* чернила, текст 13:1 */
-  --ink-2: #5a5146;      /* приглушённый текст 6.3:1 */
-  --terra: #8a3419;      /* терракота для текста 6.6:1 */
-  --terra-2: #9a3a1e;    /* терракота для линий */
+  --stone: #000000;      /* фон: чёрный, как зал проекции */
+  --stone-2: #171513;    /* заглушки, чипы, подложка фото */
+  --paper: #12100e;      /* карточки текста, всплывашки */
+  --vein: #2e2a25;       /* линии */
+  --ink: #f2ece2;        /* светлый травертин — основной текст, 17:1 */
+  --ink-2: #a89f92;      /* приглушённый текст, 8:1 */
+  --terra: #e08a62;      /* терракота для текста на чёрном, 7:1 */
+  --terra-2: #c8653f;    /* терракота для линий */
+  --on-photo: #f7f2ea;   /* текст поверх фото */
   --gutter: clamp(16px, 4vw, 48px);
   --section: clamp(64px, 9vw, 128px);
   --measure: 38rem;
@@ -127,7 +128,7 @@ p { margin: 0 0 1em; }
 .leaflet-tooltip.map-label::before { display: none; }
 .map-label {
   font-family: var(--display); text-transform: uppercase; letter-spacing: .12em; font-size: 12px;
-  color: var(--ink); background: rgba(247, 242, 234, .92); padding: 1px 5px; border-radius: 2px; white-space: nowrap;
+  color: #f2ece2; background: rgba(12, 11, 10, .82); padding: 1px 5px; border-radius: 2px; white-space: nowrap;
 }
 
 /* ---------- лента дней: крупные кадры, дата лежит прямо на фото */
@@ -145,7 +146,7 @@ p { margin: 0 0 1em; }
 .day-card:hover .card-img { transform: scale(1.035); }
 .card-on {
   position: absolute; left: 20px; right: 20px; bottom: 16px; z-index: 1; display: flex; align-items: flex-end; gap: 12px;
-  color: var(--paper); text-shadow: 0 1px 12px rgba(20, 18, 15, .45);
+  color: var(--on-photo); text-shadow: 0 1px 12px rgba(20, 18, 15, .45);
 }
 .card-on .num { font-family: var(--display); font-size: clamp(3rem, 6vw, 4.5rem); line-height: .8; }
 .card-on .mon { font: var(--label); text-transform: uppercase; letter-spacing: .2em; padding-bottom: 2px; }
@@ -203,7 +204,7 @@ audio { width: 100%; height: 40px; }
 .hero {
   position: relative; display: grid; align-items: end;
   min-height: calc(100svh - 64px); overflow: hidden;
-  background: var(--ink); color: var(--paper);
+  background: #000; color: var(--on-photo);
 }
 .hero-media { position: absolute; inset: 0; margin: 0; }
 .hero-media .ph, .hero-media a, .hero-media img { width: 100%; height: 100%; margin: 0; }
@@ -226,7 +227,7 @@ audio { width: 100%; height: 40px; }
 .hero .places { list-style: none; padding: 0; margin: clamp(14px, 2vh, 22px) 0 0; display: flex; flex-wrap: wrap; font: var(--label); text-transform: uppercase; letter-spacing: .2em; }
 .hero .places li:not(:last-child)::after { content: "·"; margin: 0 .8em; color: #f0c9b6; }
 .hero-count, .hero-cue {
-  position: absolute; z-index: 2; margin: 0; font: var(--label); text-transform: uppercase; letter-spacing: .22em; color: var(--paper);
+  position: absolute; z-index: 2; margin: 0; font: var(--label); text-transform: uppercase; letter-spacing: .22em; color: var(--on-photo);
 }
 .hero-count { top: 22px; right: var(--gutter); }
 .hero-cue { right: var(--gutter); bottom: clamp(56px, 9vh, 104px); text-decoration: none; padding-bottom: 6px; border-bottom: 1px solid currentColor; }
@@ -246,7 +247,7 @@ audio { width: 100%; height: 40px; }
 .ph::after { content: ""; position: absolute; inset: auto 0 0; height: 38%; background: linear-gradient(to top, rgba(35, 33, 30, .55), rgba(35, 33, 30, 0)); pointer-events: none; opacity: .9; }
 .ph-cap {
   position: absolute; left: 20px; right: 20px; bottom: 16px; z-index: 1; pointer-events: none;
-  font: var(--label); text-transform: uppercase; letter-spacing: .2em; color: var(--paper);
+  font: var(--label); text-transform: uppercase; letter-spacing: .2em; color: var(--on-photo);
   text-shadow: 0 1px 8px rgba(20, 18, 15, .5);
 }
 .ph-cap span { opacity: .7; margin: 0 .3em; }
@@ -311,7 +312,7 @@ audio { width: 100%; height: 40px; }
 
 /* следующий день — крупно, с его кадром */
 .daynav { margin-top: var(--section); }
-.next-day { position: relative; display: grid; align-items: end; min-height: clamp(300px, 62svh, 640px); overflow: hidden; color: var(--paper); text-decoration: none; background: var(--ink); }
+.next-day { position: relative; display: grid; align-items: end; min-height: clamp(300px, 62svh, 640px); overflow: hidden; color: var(--on-photo); text-decoration: none; background: #000; }
 .next-day img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s cubic-bezier(.2, .7, .2, 1); }
 .next-day::after { content: ""; position: absolute; inset: 0; background: var(--scrim); }
 .next-day:hover img { transform: scale(1.04); }
@@ -319,7 +320,7 @@ audio { width: 100%; height: 40px; }
 .nd-text .eyebrow { color: #f0c9b6; margin: 0; }
 .nd-title { font-family: var(--display); text-transform: uppercase; letter-spacing: .05em; font-size: clamp(2rem, 5.6vw, 4.75rem); line-height: 1.02; }
 .nd-date { font: var(--label); text-transform: uppercase; letter-spacing: .22em; }
-.next-day:hover .nd-title { color: var(--paper); }
+.next-day:hover .nd-title { color: var(--on-photo); }
 .next-day.no-photo { background: var(--stone-2); color: var(--ink); min-height: 280px; }
 .next-day.no-photo::after { display: none; }
 .next-day.no-photo .nd-text { text-shadow: none; }
