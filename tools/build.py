@@ -362,7 +362,15 @@ def photo(ph, idx, total, sizes, cls="", eager=False, reveal=True):
             f'<a href="../{ph["src"]}-1800.webp" data-lb data-srcset="{full}" data-caption="{e(cap)}" data-author="{e(by)}"'
             f'{desc_attr(ph)}>'
             f'{img_tag(ph, "../", sizes, eager=eager)}</a>'
-            f'<figcaption class="ph-cap" aria-hidden="true">{" <span>·</span> ".join(label)}{mark}</figcaption></figure>')
+            f'<figcaption class="ph-cap" aria-hidden="true">{" <span>·</span> ".join(label)}{mark}</figcaption>'
+            f'{what_btn(ph, idx)}</figure>')
+
+
+def what_btn(ph, idx):
+    if not ph.get("show_desc"):
+        return ""
+    return (f'<button class="ph-what" type="button" aria-haspopup="dialog" '
+            f'aria-label="Что это? Описание фото {idx}">Что это?</button>')
 
 
 def desc_attr(ph):
@@ -487,6 +495,16 @@ def build_day(trip, stops, audio, pages, i, preview):
   <button class="lb-btn lb-close" type="button" aria-label="Закрыть">×</button>
   <p class="lb-count" aria-live="polite"></p>
 </dialog>
+<dialog class="about" id="about" aria-labelledby="about-title">
+  <div class="about-in">
+    <button class="about-close" type="button" aria-label="Закрыть">×</button>
+    <p class="eyebrow">Что это?</p>
+    <img class="about-thumb" alt="">
+    <h2 class="about-title" id="about-title"></h2>
+    <div class="about-text"></div>
+    <button class="about-open" type="button">Открыть фото целиком</button>
+  </div>
+</dialog>
 <script src="../{v('data/trip.js')}"></script>
 <script defer src="../{v('js/day.js')}"></script>
 """)
@@ -494,6 +512,8 @@ def build_day(trip, stops, audio, pages, i, preview):
         out.append(f'<script defer src="{LEAFLET_JS}"></script>\n<script defer src="../{v("js/map.js")}"></script>\n')
     if photos:
         out.append(f'<script defer src="../{v("js/gallery.js")}"></script>\n')
+        if any(ph.get("show_desc") for ph in photos):
+            out.append(f'<script defer src="../{v("js/about.js")}"></script>\n')
     out.append("</body>\n</html>\n")
     return "".join(out)
 
