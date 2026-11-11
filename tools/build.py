@@ -31,11 +31,32 @@ def warn(msg):
     warnings.append(msg)
 
 
+USED_ASSETS = set()
+
+
 def v(path):
-    """Ссылка с отпечатком содержимого, чтобы браузер не держал старую версию."""
+    """Отпечаток содержимого прямо в имени файла: css/site.3a6ae7c7.css.
+    Кэш Render/Cloudflare не смотрит на «?v=…», а новое имя он не перепутает."""
     import hashlib
     f = ROOT / path
-    return f"{path}?v={hashlib.sha1(f.read_bytes()).hexdigest()[:8]}" if f.exists() else path
+    if not f.exists():
+        return path
+    h = hashlib.sha1(f.read_bytes()).hexdigest()[:8]
+    out = f.with_name(f"{f.stem}.{h}{f.suffix}")
+    if not out.exists():
+        out.write_bytes(f.read_bytes())
+    USED_ASSETS.add(out)
+    return str(out.relative_to(ROOT))
+
+
+def clean_assets():
+    """Убрать старые копии с отпечатком, на которые страницы больше не ссылаются."""
+    import re
+    pat = re.compile(r"\.[0-9a-f]{8}\.(css|js)$")
+    for d in ("css", "js", "data"):
+        for f in (ROOT / d).glob("*.*.*"):
+            if pat.search(f.name) and f not in USED_ASSETS:
+                f.unlink()
 
 
 def e(s):
@@ -482,6 +503,7 @@ def main():
                                                        encoding="utf-8")
     robots = "User-agent: *\nAllow: /\n" if trip["meta"].get("published") else "User-agent: *\nDisallow: /\n"
     (ROOT / "robots.txt").write_text(robots, encoding="utf-8")
+    clean_assets()
     mode = "предпросмотр" if args.preview else "публичная"
     print(f"Собрано ({mode}): index.html, {len(pages)} страниц дней, data/trip.js, точек маршрута: {len(rt)}")
     if not trip["meta"].get("published"):
