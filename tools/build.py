@@ -148,6 +148,7 @@ def head(trip, title, desc, base, extra=""):
 <html lang="ru">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.classList.add("js")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
@@ -253,14 +254,21 @@ def build_index(trip, stops, audio, pages, preview):
     # лента дней
     cards = []
     for p in pages:
-        ph = p["show_photos"][0] if p["show_photos"] else None
-        visual = (img_tag(ph, "", "(min-width: 1100px) 33vw, (min-width: 700px) 50vw, 100vw", "card-img")
-                  if ph else f'<div class="card-blank" aria-hidden="true">{roman(p["n"])}</div>')
+        phs = p["show_photos"]
+        date_on = (f'<span class="card-on"><span class="num">{p["d"].day}</span>'
+                   f'<span class="mon">{MONTHS[p["d"].month - 1]}<br>Dies {roman(p["n"])}</span>'
+                   f'{f"<span class=card-count>{len(phs)} фото</span>" if phs else ""}</span>')
+        if len(phs) >= 2:
+            visual = (f'<span class="card-vis card-pair">{img_tag(phs[0], "", "(min-width: 900px) 25vw, 50vw", "card-img")}'
+                      f'{img_tag(phs[1], "", "(min-width: 900px) 25vw, 50vw", "card-img")}{date_on}</span>')
+        elif phs:
+            visual = f'<span class="card-vis">{img_tag(phs[0], "", "(min-width: 900px) 50vw, 100vw", "card-img")}{date_on}</span>'
+        else:
+            visual = f'<span class="card-vis card-blank" aria-hidden="true">{roman(p["n"])}{date_on}</span>'
         places = " · ".join(e(n) for n in stop_names(p, stops))
         line = excerpt(p["show_text"])
-        cards.append(f"""<li><a class="day-card" href="{p['url']}">
+        cards.append(f"""<li data-reveal><a class="day-card" href="{p['url']}">
   {visual}
-  <span class="card-date"><span class="num">{p['d'].day}</span><span class="mon">{MONTHS[p['d'].month - 1]}</span><span class="dies">Dies {roman(p['n'])}</span></span>
   <span class="card-title">{e(p['title'])}</span>
   {f'<span class="card-places">{places}</span>' if places else ''}
   {f'<span class="card-line">{e(line)}</span>' if line else ''}
@@ -303,7 +311,7 @@ def build_index(trip, stops, audio, pages, preview):
     out.append("</main>\n")
     out.append(site_footer(trip))
     out.append(f'<script src="{v("data/trip.js")}"></script>\n<script defer src="{LEAFLET_JS}"></script>\n'
-               f'<script defer src="{v("js/map.js")}"></script>\n</body>\n</html>\n')
+               f'<script defer src="{v("js/map.js")}"></script>\n<script defer src="{v("js/day.js")}"></script>\n</body>\n</html>\n')
     return "".join(out)
 
 
@@ -312,24 +320,75 @@ def byline(cap, by):
     return f"{e(cap)} · {who}" if cap and who else (e(cap) or who)
 
 
-def gallery(p):
-    items = []
-    for i, ph in enumerate(p["show_photos"]):
-        w, h = ph.get("w") or 3, ph.get("h") or 2
-        shape = "tall" if h > w * 1.1 else ("wide" if w > h * 1.6 else "")
-        if i == 0:
-            shape = "lead"
-        cap = ph.get("caption") or ""
-        by = ph.get("author") or ""
-        mark = '<span class="pending">не одобрено</span>' if ph.get("pending") else ""
-        full = ", ".join(f"../{ph['src']}-{s}.webp {s}w" for s in SIZES)
-        items.append(f"""<li class="g-item {shape}">
-  <a href="../{ph['src']}-1800.webp" data-srcset="{full}" data-caption="{e(cap)}" data-author="{e(by)}">
-    {img_tag(ph, '../', '(min-width: 900px) 50vw, 100vw' if shape in ('lead', 'wide') else '(min-width: 900px) 25vw, 50vw')}
-  </a>
-  {f'<p class="g-cap">{byline(cap, by)}{mark}</p>' if cap or by or mark else ''}
-</li>""")
-    return "\n".join(items)
+# --------------------------------------------------------------- день: сцены «текст + фото»
+
+def is_tall(ph):
+    return (ph.get("h") or 2) > (ph.get("w") or 3) * 1.05
+
+
+def photo(ph, idx, total, sizes, cls="", eager=False, reveal=True):
+    """Фото-ссылка для полноэкранного просмотра; подпись лежит прямо на кадре."""
+    cap, by = ph.get("caption") or "", ph.get("author") or ""
+    full = ", ".join(f"../{ph['src']}-{s}.webp {s}w" for s in SIZES)
+    mark = '<span class="pending">не одобрено</span>' if ph.get("pending") else ""
+    label = [f"{idx:02d} / {total:02d}"] + ([e(cap)] if cap else []) + ([f"фото: {e(by)}"] if by else [])
+    shape = " tall" if is_tall(ph) else ""
+    rv = " data-reveal" if reveal else ""
+    return (f'<figure class="ph {cls}{shape}"{rv}>'
+            f'<a href="../{ph["src"]}-1800.webp" data-lb data-srcset="{full}" data-caption="{e(cap)}" data-author="{e(by)}">'
+            f'{img_tag(ph, "../", sizes, eager=eager)}</a>'
+            f'<figcaption class="ph-cap" aria-hidden="true">{" <span>·</span> ".join(label)}{mark}</figcaption></figure>')
+
+
+def pair(items, total, cls=""):
+    """Пара кадров рядом в общей скруглённой рамке (приём BAM)."""
+    tall = any(is_tall(ph) for ph, _ in items)
+    figs = "".join(photo(ph, i, total, "(min-width: 700px) 50vw, 100vw") for ph, i in items)
+    return f'<div class="pair{" pair-tall" if tall else ""} {cls}">{figs}</div>'
+
+
+def media_run(items, total):
+    """Несколько кадров подряд: крупный, потом пара, потом снова крупный…"""
+    out, k, single = [], 0, True
+    while k < len(items):
+        if not single and k + 1 < len(items):
+            out.append(pair(items[k:k + 2], total)); k += 2
+        else:
+            ph, i = items[k]
+            out.append(photo(ph, i, total, "(min-width: 900px) 58vw, 100vw", "ph-col")); k += 1
+        single = not single
+    return "".join(out)
+
+
+def story_scenes(p):
+    paras = p["show_text"]
+    photos = p["show_photos"]
+    total = len(photos)
+    rest = [(ph, i) for i, ph in enumerate(photos, 1)][1:]          # первый кадр — на обложке дня
+    n, m = len(paras), len(rest)
+    if not n:
+        if not rest:
+            return '<section class="scene scene-text"><div class="sc-text"><p class="muted">Рассказ этого дня появится позже.</p></div></section>'
+        return f'<section class="scene scene-sticky scene-notext"><div class="sc-media">{media_run(rest, total)}</div></section>'
+    out, used = [], 0
+    for i, t in enumerate(paras):
+        k = (i + 1) * m // n - i * m // n                              # кадры поровну между абзацами
+        chunk, used = rest[used:used + k], used + k
+        cls = ' class="first"' if i == 0 else ""
+        para = f"<p{cls}>{e(t)}</p>"
+        side = "left" if i % 2 == 0 else "right"
+        if not chunk:
+            out.append(f'<section class="scene scene-text"><div class="sc-text" data-reveal>{para}</div></section>')
+        elif len(chunk) == 1 and not is_tall(chunk[0][0]):
+            ph, j = chunk[0]
+            out.append(f'<section class="scene scene-over {side}">{photo(ph, j, total, "100vw", "ph-full")}'
+                       f'<div class="sc-card" data-reveal>{para}</div></section>')
+        elif len(chunk) == 2:
+            out.append(f'<section class="scene scene-pair"><div class="sc-text" data-reveal>{para}</div>{pair(chunk, total)}</section>')
+        else:
+            out.append(f'<section class="scene scene-sticky {side}"><div class="sc-side"><div class="sc-card" data-reveal>{para}</div></div>'
+                       f'<div class="sc-media">{media_run(chunk, total)}</div></section>')
+    return "\n".join(out)
 
 
 def build_day(trip, stops, audio, pages, i, preview):
@@ -340,35 +399,28 @@ def build_day(trip, stops, audio, pages, i, preview):
     desc = f"{ru_date(d, True)}. " + (", ".join(places) if places else trip["meta"]["title"])
     out = [head(trip, f"{p['title']} — {ru_date(d)} · {trip['meta']['title']}", desc, "../",
                 f'<link rel="stylesheet" href="{LEAFLET_CSS}">\n'), site_header("../")]
-    out.append('<main id="main" class="day">\n')
-    place_html = "".join(
-        f'<li>{e(stops[s]["name"])}{f" <span class=muted>· {e(stops[s].get("note"))}</span>" if stops[s].get("note") else ""}</li>'
-        for s in p.get("stops", []))
-    out.append(f"""<header class="day-head">
-  <p class="day-date"><span class="num">{d.day}</span><span class="mon">{MONTHS[d.month - 1]} {d.year}<br><span class="muted">{WEEKDAYS[d.weekday()]}</span></span></p>
-  <div>
+    out.append('<div class="progress" aria-hidden="true"><span></span></div>\n<main id="main" class="day">\n')
+    place_html = "".join(f'<li>{e(stops[s]["name"])}</li>' for s in dict.fromkeys(p.get("stops", [])))
+    photos = p["show_photos"]
+    lead = photos[0] if photos else None
+    count = f'<p class="hero-count">{len(photos)} фото</p>' if photos else ""
+    media = (f'<div class="hero-media">{photo(lead, 1, len(photos), "100vw", "ph-hero", eager=True, reveal=False)}</div>'
+             if lead else "")
+    out.append(f"""<header class="hero{'' if lead else ' no-photo'}">
+  {media}
+  <div class="hero-text">
     <p class="eyebrow">День {p['n']} <span aria-hidden="true">·</span> Dies {roman(p['n'])}</p>
+    <p class="hero-date"><span class="num">{d.day}</span><span class="mon">{MONTHS[d.month - 1]} {d.year}<br><i>{WEEKDAYS[d.weekday()]}</i></span></p>
     <h1>{e(p['title'])}</h1>
     {f'<ul class="places" aria-label="Места">{place_html}</ul>' if place_html else ''}
   </div>
+  {count}
+  {'<a class="hero-cue" href="#story">Листайте</a>' if lead or p['show_text'] else ''}
 </header>
 """)
-    out.append(stripe())
-    if p["show_text"]:
-        mark = '<p class="pending">Текст ещё не одобрен о. Андреем</p>' if p["text_pending"] else ""
-        paras = "\n".join(f"<p>{e(t)}</p>" for t in p["show_text"])
-        out.append(f'<section class="story" aria-label="Рассказ дня">{mark}\n{paras}\n</section>\n')
-    else:
-        out.append('<section class="story"><p class="muted">Рассказ этого дня появится позже.</p></section>\n')
+    mark = '<p class="pending">Текст ещё не одобрен о. Андреем</p>' if p["text_pending"] else ""
+    out.append(f'<div class="story" id="story" aria-label="Рассказ дня">{mark}\n{story_scenes(p)}\n</div>\n')
 
-    if p["show_photos"]:
-        out.append(f"""<section class="block gallery-block" aria-labelledby="ph-h">
-  <h2 id="ph-h" class="visually-hidden">Фотографии</h2>
-  <ul class="gallery" id="gallery">
-{gallery(p)}
-  </ul>
-</section>
-""")
     items = [audio[a] for a in p.get("audio", [])]
     if items:
         out.append(f"""<section class="block" aria-labelledby="au-h">
@@ -382,16 +434,17 @@ def build_day(trip, stops, audio, pages, i, preview):
   <div class="map map-day" id="day-map" data-date="{p['date']}" role="region" aria-label="Карта дня"></div>
 </section>
 """)
-    nav = []
-    if prev_p:
-        nav.append(f'<a class="pn prev" href="{prev_p["date"]}.html" rel="prev"><span class="muted">Предыдущий день</span>'
-                   f'<span>{ru_date(prev_p["d"])} · {e(prev_p["title"])}</span></a>')
-    else:
-        nav.append("<span></span>")
+    # дальше: следующий день крупно, с его кадром; предыдущий — тихой ссылкой
+    nxt = ""
     if next_p:
-        nav.append(f'<a class="pn next" href="{next_p["date"]}.html" rel="next"><span class="muted">Следующий день</span>'
-                   f'<span>{ru_date(next_p["d"])} · {e(next_p["title"])}</span></a>')
-    out.append(f'<nav class="prevnext" aria-label="Соседние дни">{"".join(nav)}</nav>\n')
+        nph = next_p["show_photos"][0] if next_p["show_photos"] else None
+        bg = img_tag(nph, "../", "100vw") if nph else ""
+        nxt = (f'<a class="next-day{"" if nph else " no-photo"}" href="{next_p["date"]}.html" rel="next">{bg}'
+               f'<span class="nd-text"><span class="eyebrow">Следующий день · Dies {roman(next_p["n"])}</span>'
+               f'<span class="nd-title">{e(next_p["title"])}</span><span class="nd-date">{ru_date(next_p["d"])} →</span></span></a>')
+    prv = (f'<a class="prev-day" href="{prev_p["date"]}.html" rel="prev">← {ru_date(prev_p["d"])} · {e(prev_p["title"])}</a>'
+           if prev_p else "")
+    out.append(f'<nav class="daynav" aria-label="Соседние дни">{nxt}{prv}</nav>\n')
     out.append("</main>\n")
     out.append(site_footer(trip))
     out.append(f"""<dialog class="lightbox" id="lightbox" aria-label="Просмотр фотографии">
@@ -402,10 +455,11 @@ def build_day(trip, stops, audio, pages, i, preview):
   <p class="lb-count" aria-live="polite"></p>
 </dialog>
 <script src="../{v('data/trip.js')}"></script>
+<script defer src="../{v('js/day.js')}"></script>
 """)
     if p.get("stops"):
         out.append(f'<script defer src="{LEAFLET_JS}"></script>\n<script defer src="../{v("js/map.js")}"></script>\n')
-    if p["show_photos"]:
+    if photos:
         out.append(f'<script defer src="../{v("js/gallery.js")}"></script>\n')
     out.append("</body>\n</html>\n")
     return "".join(out)

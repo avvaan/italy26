@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.classList.add("js")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Тарквиния и термы Витербо — 11 ноября · Италия 2026</title>
 <meta name="description" content="11 ноября 2026. Тускания, Тарквиния">
@@ -10,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap&subset=cyrillic">
-<link rel="stylesheet" href="../css/site.css?v=50514b9d">
+<link rel="stylesheet" href="../css/site.css?v=e8faef50">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
@@ -19,22 +20,27 @@
   <a class="wordmark" href="../index.html" aria-label="Италия 2026 — на главную">Italia<span aria-hidden="true">·</span>MMXXVI</a>
   <nav aria-label="Разделы"><a href="../index.html#days">Дни</a><a href="../index.html#route">Маршрут</a><a href="../index.html#audio">Аудио</a><a href="../index.html#film">Фильм</a></nav>
 </header>
+<div class="progress" aria-hidden="true"><span></span></div>
 <main id="main" class="day">
-<header class="day-head">
-  <p class="day-date"><span class="num">11</span><span class="mon">ноября 2026<br><span class="muted">среда</span></span></p>
-  <div>
+<header class="hero no-photo">
+  
+  <div class="hero-text">
     <p class="eyebrow">День 14 <span aria-hidden="true">·</span> Dies XIV</p>
+    <p class="hero-date"><span class="num">11</span><span class="mon">ноября 2026<br><i>среда</i></span></p>
     <h1>Тарквиния и термы Витербо</h1>
-    <ul class="places" aria-label="Места"><li>Тускания <span class=muted>· жильё 10–13.11</span></li><li>Тарквиния <span class=muted>· этрусский некрополь и музей</span></li></ul>
+    <ul class="places" aria-label="Места"><li>Тускания</li><li>Тарквиния</li></ul>
   </div>
+  
+  
 </header>
-<div class="stripe" aria-hidden="true"></div>
-<section class="story"><p class="muted">Рассказ этого дня появится позже.</p></section>
+<div class="story" id="story" aria-label="Рассказ дня">
+<section class="scene scene-text"><div class="sc-text"><p class="muted">Рассказ этого дня появится позже.</p></div></section>
+</div>
 <section class="block" aria-labelledby="mm-h">
   <div class="block-head"><p class="eyebrow">Locus</p><h2 id="mm-h">Где мы были</h2></div>
   <div class="map map-day" id="day-map" data-date="2026-11-11" role="region" aria-label="Карта дня"></div>
 </section>
-<nav class="prevnext" aria-label="Соседние дни"><a class="pn prev" href="2026-11-10.html" rel="prev"><span class="muted">Предыдущий день</span><span>10 ноября · Монтефьясконе, Каподимонте, Тускания</span></a><a class="pn next" href="2026-11-12.html" rel="next"><span class="muted">Следующий день</span><span>12 ноября · Тарквиния и термы Витербо</span></a></nav>
+<nav class="daynav" aria-label="Соседние дни"><a class="next-day no-photo" href="2026-11-12.html" rel="next"><span class="nd-text"><span class="eyebrow">Следующий день · Dies XV</span><span class="nd-title">Тарквиния и термы Витербо</span><span class="nd-date">12 ноября →</span></span></a><a class="prev-day" href="2026-11-10.html" rel="prev">← 10 ноября · Монтефьясконе, Каподимонте, Тускания</a></nav>
 </main>
 <footer class="site-foot">
   <p class="inscr">Андрей, Яна и Маша<span aria-hidden="true"> · </span>2026</p>
@@ -48,6 +54,7 @@
   <p class="lb-count" aria-live="polite"></p>
 </dialog>
 <script src="../data/trip.js?v=a69ca86d"></script>
+<script defer src="../js/day.js?v=f99abed5"></script>
 <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script defer src="../js/map.js?v=d5dac4f9"></script>
 </body>

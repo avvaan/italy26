@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.classList.add("js")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Домой — 14 ноября · Италия 2026</title>
 <meta name="description" content="14 ноября 2026. Лиссабон">
@@ -10,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap&subset=cyrillic">
-<link rel="stylesheet" href="../css/site.css?v=50514b9d">
+<link rel="stylesheet" href="../css/site.css?v=e8faef50">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
@@ -19,22 +20,27 @@
   <a class="wordmark" href="../index.html" aria-label="Италия 2026 — на главную">Italia<span aria-hidden="true">·</span>MMXXVI</a>
   <nav aria-label="Разделы"><a href="../index.html#days">Дни</a><a href="../index.html#route">Маршрут</a><a href="../index.html#audio">Аудио</a><a href="../index.html#film">Фильм</a></nav>
 </header>
+<div class="progress" aria-hidden="true"><span></span></div>
 <main id="main" class="day">
-<header class="day-head">
-  <p class="day-date"><span class="num">14</span><span class="mon">ноября 2026<br><span class="muted">суббота</span></span></p>
-  <div>
+<header class="hero no-photo">
+  
+  <div class="hero-text">
     <p class="eyebrow">День 17 <span aria-hidden="true">·</span> Dies XVII</p>
+    <p class="hero-date"><span class="num">14</span><span class="mon">ноября 2026<br><i>суббота</i></span></p>
     <h1>Домой</h1>
     <ul class="places" aria-label="Места"><li>Лиссабон</li></ul>
   </div>
+  
+  
 </header>
-<div class="stripe" aria-hidden="true"></div>
-<section class="story"><p class="muted">Рассказ этого дня появится позже.</p></section>
+<div class="story" id="story" aria-label="Рассказ дня">
+<section class="scene scene-text"><div class="sc-text"><p class="muted">Рассказ этого дня появится позже.</p></div></section>
+</div>
 <section class="block" aria-labelledby="mm-h">
   <div class="block-head"><p class="eyebrow">Locus</p><h2 id="mm-h">Где мы были</h2></div>
   <div class="map map-day" id="day-map" data-date="2026-11-14" role="region" aria-label="Карта дня"></div>
 </section>
-<nav class="prevnext" aria-label="Соседние дни"><a class="pn prev" href="2026-11-13.html" rel="prev"><span class="muted">Предыдущий день</span><span>13 ноября · Фьюмичино — Лиссабон</span></a></nav>
+<nav class="daynav" aria-label="Соседние дни"><a class="prev-day" href="2026-11-13.html" rel="prev">← 13 ноября · Фьюмичино — Лиссабон</a></nav>
 </main>
 <footer class="site-foot">
   <p class="inscr">Андрей, Яна и Маша<span aria-hidden="true"> · </span>2026</p>
@@ -48,6 +54,7 @@
   <p class="lb-count" aria-live="polite"></p>
 </dialog>
 <script src="../data/trip.js?v=a69ca86d"></script>
+<script defer src="../js/day.js?v=f99abed5"></script>
 <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script defer src="../js/map.js?v=d5dac4f9"></script>
 </body>

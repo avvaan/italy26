@@ -2,7 +2,7 @@
    свайп влево-вправо на телефоне. Без JS ссылки ведут прямо на большой файл. */
 (function () {
   "use strict";
-  var links = Array.prototype.slice.call(document.querySelectorAll("#gallery a"));
+  var links = Array.prototype.slice.call(document.querySelectorAll("a[data-lb]"));
   var box = document.getElementById("lightbox");
   if (!links.length || !box || typeof box.showModal !== "function") return;
 
