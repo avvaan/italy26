@@ -9,6 +9,7 @@
   var img = box.querySelector("img");
   var cap = box.querySelector("figcaption");
   var count = box.querySelector(".lb-count");
+  var desc = box.querySelector(".lb-desc");
   var cur = 0, opener = null, x0 = null, y0 = null;
 
   function show(i) {
@@ -22,6 +23,23 @@
     var c = a.getAttribute("data-caption"), by = a.getAttribute("data-author");
     cap.textContent = c + (c && by ? " · " : "") + (by ? "фото: " + by : "");
     count.textContent = (cur + 1) + " / " + links.length;
+    // описание фотографии — абзацами под кадром
+    if (desc) {
+      var text = a.getAttribute("data-desc") || "";
+      desc.textContent = "";
+      if (text) {
+        if (a.hasAttribute("data-desc-pending")) {
+          var mark = document.createElement("p"); mark.className = "pending"; mark.textContent = "Описание ещё не одобрено";
+          desc.appendChild(mark);
+        }
+        text.split(/\n\s*\n/).forEach(function (t) {
+          var p = document.createElement("p"); p.textContent = t.trim(); desc.appendChild(p);
+        });
+      }
+      desc.hidden = !text;
+      box.classList.toggle("has-desc", !!text);
+      box.scrollTop = 0;
+    }
     // подгружаем соседний кадр заранее
     var n = links[(cur + 1) % links.length];
     if (n) { var pre = new Image(); pre.srcset = n.getAttribute("data-srcset") || ""; pre.sizes = "100vw"; }
@@ -59,6 +77,6 @@
     var dx = ev.changedTouches[0].clientX - x0, dy = ev.changedTouches[0].clientY - y0;
     x0 = null;
     if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) show(cur + (dx < 0 ? 1 : -1));
-    else if (dy > 90 && Math.abs(dy) > Math.abs(dx) * 1.5) box.close();   // смахнуть вниз — закрыть
+    else if (dy > 90 && Math.abs(dy) > Math.abs(dx) * 1.5 && box.scrollTop <= 0) box.close();   // смахнуть вниз — закрыть (только с самого верха)
   }, { passive: true });
 })();

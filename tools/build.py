@@ -112,10 +112,16 @@ def load(preview):
         for ph in p.get("photos", []):
             ok = ph.get("approved", False)
             if ok or preview:
-                shown.append(dict(ph, pending=not ok))
+                d_ok = ph.get("description_approved", False)
+                desc = ph.get("description", "") if (d_ok or preview) else ""
+                shown.append(dict(ph, pending=not ok, show_desc=desc,
+                                  desc_pending=bool(ph.get("description")) and not d_ok))
             if not ok:
                 warn(f"{p['date']}: фото {ph.get('src')} ждёт одобрения")
         p["show_photos"] = shown
+        nd = sum(1 for ph in p.get("photos", []) if ph.get("description") and not ph.get("description_approved"))
+        if nd:
+            warn(f"{p['date']}: описаний фото ждут одобрения: {nd}")
         if p["text_pending"]:
             warn(f"{p['date']}: текст ждёт одобрения")
     for a in audio.values():
@@ -353,9 +359,17 @@ def photo(ph, idx, total, sizes, cls="", eager=False, reveal=True):
     shape = " tall" if is_tall(ph) else ""
     rv = " data-reveal" if reveal else ""
     return (f'<figure class="ph {cls}{shape}"{rv}>'
-            f'<a href="../{ph["src"]}-1800.webp" data-lb data-srcset="{full}" data-caption="{e(cap)}" data-author="{e(by)}">'
+            f'<a href="../{ph["src"]}-1800.webp" data-lb data-srcset="{full}" data-caption="{e(cap)}" data-author="{e(by)}"'
+            f'{desc_attr(ph)}>'
             f'{img_tag(ph, "../", sizes, eager=eager)}</a>'
             f'<figcaption class="ph-cap" aria-hidden="true">{" <span>·</span> ".join(label)}{mark}</figcaption></figure>')
+
+
+def desc_attr(ph):
+    d = ph.get("show_desc") or ""
+    if not d:
+        return ""
+    return f' data-desc="{e(d)}"' + (' data-desc-pending' if ph.get("desc_pending") else "")
 
 
 def pair(items, total, cls=""):
@@ -467,6 +481,7 @@ def build_day(trip, stops, audio, pages, i, preview):
     out.append(site_footer(trip))
     out.append(f"""<dialog class="lightbox" id="lightbox" aria-label="Просмотр фотографии">
   <figure><img alt=""><figcaption></figcaption></figure>
+  <div class="lb-desc" hidden></div>
   <button class="lb-btn lb-prev" type="button" aria-label="Предыдущее фото">‹</button>
   <button class="lb-btn lb-next" type="button" aria-label="Следующее фото">›</button>
   <button class="lb-btn lb-close" type="button" aria-label="Закрыть">×</button>

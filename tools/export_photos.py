@@ -113,6 +113,9 @@ def main():
                 "w": round(w0 * k), "h": round(h0 * k),
                 "people": people,
                 "approved": before.get("approved", not people),
+                **({"description": before["description"],
+                    "description_approved": before.get("description_approved", False)}
+                   if before.get("description") else {}),
             })
             new_map.append({"day": day, "src": src, "file": r["file"]})
         page["photos"] = photos
