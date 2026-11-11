@@ -75,7 +75,8 @@
       if (onlyDate && r[i].date !== onlyDate) continue;
       var flight = AIR[a.kind] && AIR[b.kind];
       var done = r[i].date <= T.today;
-      L.polyline([[a.lat, a.lon], [b.lat, b.lon]], {
+      var road = !flight && T.roads && T.roads[a.id + ">" + b.id];
+      L.polyline(road || [[a.lat, a.lon], [b.lat, b.lon]], {
         color: flight ? "#23211e" : (done ? "#9a3a1e" : "#5a5146"),
         weight: flight ? 2 : 3,
         opacity: 0.9,

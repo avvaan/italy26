@@ -88,6 +88,8 @@ def main():
         source = None
 
     d = ImageDraw.Draw(img)
+    rf = ROOT / "data" / "roads.json"
+    roads = json.loads(rf.read_text(encoding="utf-8")) if rf.exists() else {}
 
     def pt(sid):
         s = stops[sid]
@@ -103,7 +105,10 @@ def main():
                 cx, cy = x1 + (x2 - x1) * t, y1 + (y2 - y1) * t
                 d.ellipse([cx - 2.5, cy - 2.5, cx + 2.5, cy + 2.5], fill=INK)
         else:
-            d.line([(x1, y1), (x2, y2)], fill=TERRA, width=6)
+            path = roads.get(f"{a}>{b}", {}).get("path")
+            xy = [(lambda w: (w[0] - ox, w[1] - oy))(world(la, lo, z)) for la, lo in path] if path \
+                else [(x1, y1), (x2, y2)]
+            d.line(xy, fill=TERRA, width=6, joint="curve")
 
     f_lab, f_note = font(24), font(20)
     shown = [sid for sid in dict.fromkeys(route) if 0 <= pt(sid)[0] <= W and 0 <= pt(sid)[1] <= H]

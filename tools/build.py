@@ -114,12 +114,19 @@ def route(pages, stops):
     return pts
 
 
+def roads():
+    f = ROOT / "data" / "roads.json"
+    return json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+
+
 def write_trip_js(trip, stops, pages, rt):
     today = dt.datetime.now(ZoneInfo(trip["meta"]["timezone"])).date().isoformat()
     data = {
         "today": today,
         "stops": [{k: s.get(k) for k in ("id", "name", "lat", "lon", "kind", "note")} for s in stops.values()],
         "route": rt,
+        # дороги между остановками (tools/road_routes.py); нет отрезка — карта рисует прямую
+        "roads": {k: v["path"] for k, v in roads().items()},
         "days": [{"date": p["date"], "n": p["n"], "title": p["title"], "stops": p.get("stops", []),
                   "label": ru_date(p["d"])} for p in pages],
     }
