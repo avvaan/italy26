@@ -2039,7 +2039,7 @@
           "w": 1800,
           "h": 1012,
           "people": false,
-          "approved": false
+          "approved": true
         }
       ],
       "audio": [
@@ -2077,7 +2077,7 @@
           "w": 1800,
           "h": 1012,
           "people": true,
-          "approved": false
+          "approved": true
         },
         {
           "src": "photos/2026-11-11/3",
@@ -2087,7 +2087,7 @@
           "w": 1800,
           "h": 1012,
           "people": true,
-          "approved": false
+          "approved": true
         },
         {
           "src": "photos/2026-11-11/4",
