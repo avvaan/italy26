@@ -36,6 +36,8 @@ class Refs(HTMLParser):
 def main():
     bad = []
     pages = [ROOT / "index.html"] + sorted((ROOT / "days").glob("*.html"))
+    if (ROOT / "en" / "index.html").exists():
+        pages += [ROOT / "en" / "index.html"] + sorted((ROOT / "en" / "days").glob("*.html"))
     ids = {}
     parsed = {}
     for p in pages:

@@ -2,6 +2,7 @@
    свайп влево-вправо на телефоне. Без JS ссылки ведут прямо на большой файл. */
 (function () {
   "use strict";
+  var UI = (window.TRIP && window.TRIP.ui) || { photo_by: "фото: {}", desc_pending: "Описание ещё не одобрено" };
   var links = Array.prototype.slice.call(document.querySelectorAll("a[data-lb]"));
   var box = document.getElementById("lightbox");
   if (!links.length || !box || typeof box.showModal !== "function") return;
@@ -21,7 +22,7 @@
     img.src = a.href;
     img.alt = thumb ? thumb.alt : "";
     var c = a.getAttribute("data-caption"), by = a.getAttribute("data-author");
-    cap.textContent = c + (c && by ? " · " : "") + (by ? "фото: " + by : "");
+    cap.textContent = c + (c && by ? " · " : "") + (by ? UI.photo_by.replace("{}", by) : "");
     count.textContent = (cur + 1) + " / " + links.length;
     // описание фотографии — абзацами под кадром
     if (desc) {
@@ -29,7 +30,7 @@
       desc.textContent = "";
       if (text) {
         if (a.hasAttribute("data-desc-pending")) {
-          var mark = document.createElement("p"); mark.className = "pending"; mark.textContent = "Описание ещё не одобрено";
+          var mark = document.createElement("p"); mark.className = "pending"; mark.textContent = UI.desc_pending;
           desc.appendChild(mark);
         }
         text.split(/\n\s*\n/).forEach(function (t) {

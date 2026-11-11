@@ -4,16 +4,17 @@
   "use strict";
   var T = window.TRIP;
   var TILES = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}";
-  var ATTR = "Подложка © Esri";
+  var UI = T.ui || {};
+  var ATTR = UI.map_attr || "Подложка © Esri";
   var FAR = { transit: 1 };          // пересадки вне Италии: не влияют на масштаб
   var AIR = { airport: 1, transit: 1 };
 
   function fallback(el) {
     var src = el.getAttribute("data-fallback");
-    if (!src) { el.innerHTML = '<p class="muted" style="padding:16px">Карта не загрузилась.</p>'; return; }
+    if (!src) { el.innerHTML = '<p class="muted" style="padding:16px">' + (UI.map_fail || "Карта не загрузилась.") + '</p>'; return; }
     var img = new Image();
     img.src = src;
-    img.alt = "Карта маршрута поездки по Италии";
+    img.alt = UI.map_alt || "Карта маршрута поездки по Италии";
     el.innerHTML = "";
     el.appendChild(img);
   }

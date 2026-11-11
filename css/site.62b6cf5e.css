@@ -63,6 +63,7 @@ p { margin: 0 0 1em; }
   text-decoration: none; padding: 6px 0;
 }
 .site-head nav a:hover { text-decoration: underline; }
+.site-head nav .lang-switch { color: var(--terra); border-left: 1px solid var(--vein); padding-left: clamp(14px, 3vw, 32px); }
 
 /* ---------- полоса-разделитель: терракотовые штрихи по чернильной нити */
 .stripe {
