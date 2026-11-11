@@ -50,6 +50,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--media", default=str(ROOT.parent / "italy-2026-media"))
     ap.add_argument("--day", help="только этот день (YYYY-MM-DD)")
+    ap.add_argument("--replace-all", action="store_true",
+                    help="на сайте только эти фото: у дней без выбранных фото галерея очищается")
     args = ap.parse_args()
     media = Path(args.media).resolve()
     rows = list(csv.DictReader(open(media / "catalog.csv", encoding="utf-8")))
@@ -70,6 +72,14 @@ def main():
             old_map[(m["day"], m["file"])] = m["src"]
     new_map = [m for m in csv.DictReader(open(map_path, encoding="utf-8"))] if map_path.exists() else []
     new_map = [m for m in new_map if m["day"] not in picked]
+
+    if args.replace_all:
+        for day, page in pages.items():
+            if day not in picked and page.get("photos"):
+                for old in (ROOT / "photos" / day).glob("*.webp"):
+                    old.unlink()
+                page["photos"] = []
+                print(f"{day}: фото убраны")
 
     for day, rs in sorted(picked.items()):
         page = pages[day]

@@ -261,6 +261,8 @@ def main():
     ap.add_argument("--videos-from", help="папка-источник, откуда читать видео без копирования")
     ap.add_argument("--min", type=int, default=8)
     ap.add_argument("--max", type=int, default=15)
+    ap.add_argument("--select-all", action="store_true",
+                    help="выбрать все фото (папка уже отобрана вручную, например альбом из «Фото»)")
     args = ap.parse_args()
     media = Path(args.media).resolve()
     orig = media / "originals"
@@ -320,7 +322,7 @@ def main():
             best = min(stops, key=lambda s: km((lat, lon), (s["lat"], s["lon"])))
             stop_id = best["id"] if km((lat, lon), (best["lat"], best["lon"])) <= RADIUS_KM else "в дороге"
         camera = " ".join(x for x in (m.get("Make"), m.get("Model")) if x)
-        if fday or rel.parts[0][:2].isdigit():
+        if fday or rel.parts[0][:2].isdigit() or len(rel.parts) == 1:
             author = authors.get(camera) or authors.get(m.get("Model") or "") or "?"
         else:
             author = rel.parts[0]   # старая раскладка: папка = автор
@@ -398,7 +400,9 @@ def main():
         if not day:
             continue
         pool = sorted((r for r in group if not r["is_duplicate_of"] and not r["_private"]), key=lambda r: -r["_score"])
-        want = min(args.max, max(args.min, len(pool) // 6))
+        if args.select_all:   # отбор сделан человеком: берём всё, кроме «никогда не публикуется»
+            pool = [r for r in group if not r["_private"]]
+        want = len(pool) if args.select_all else min(args.max, max(args.min, len(pool) // 6))
         picked, cats = [], Counter()
         while pool and len(picked) < want:
             def gain(r):
