@@ -187,6 +187,14 @@
       "lat": 42.8706,
       "lon": 11.8768,
       "kind": "site"
+    },
+    {
+      "id": "viterbo",
+      "name": "Витербо",
+      "lat": 42.4166,
+      "lon": 12.1045,
+      "kind": "town",
+      "note": "Папский дворец"
     }
   ],
   "pages": [
@@ -2608,10 +2616,143 @@
       "date": "2026-11-12",
       "title": "Тарквиния и термы Витербо",
       "stops": [
+        "tuscania",
+        "viterbo",
         "tuscania"
       ],
       "text": [],
-      "photos": [],
+      "photos": [
+        {
+          "src": "photos/2026-11-12/1",
+          "alt": "Лоджия Папского дворца в Витербо",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1012,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-12/2",
+          "alt": "Готический алтарный складень в музее собора Витербо",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1012,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-12/3",
+          "alt": "Древний каменный саркофаг во дворе",
+          "caption": "",
+          "author": "",
+          "w": 1351,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-12/4",
+          "alt": "Богоматерь с Младенцем на золотом фоне",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1012,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-12/5",
+          "alt": "Реликварий с мощами в витрине музея",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1012,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-12/6",
+          "alt": "«Распятие» с Богоматерью и святыми",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1012,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-12/7",
+          "alt": "«Мёртвый Христос»",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1012,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-12/8",
+          "alt": "Красное облачение с золотым шитьём",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1012,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-12/9",
+          "alt": "Мраморный бюст у туфовой стены",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1012,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-12/10",
+          "alt": "Остатки фрески со святыми",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1012,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-12/11",
+          "alt": "Мокрая от дождя улица Витербо",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1012,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-12/12",
+          "alt": "Лестница, вырубленная в туфе",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1012,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-12/13",
+          "alt": "Бутылка кьянти за ужином в Тускании",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1012,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        }
+      ],
       "audio": [],
       "todo": "Что было 12-го — уточнить."
     },
