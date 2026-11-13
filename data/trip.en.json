@@ -113,6 +113,10 @@
     "viterbo": {
       "name": "Viterbo",
       "note": "Papal Palace"
+    },
+    "cerveteri": {
+      "name": "Cerveteri",
+      "note": "Banditaccia Etruscan necropolis"
     }
   },
   "audio": {
@@ -1092,6 +1096,27 @@
     "photos/2026-11-12/13": {
       "alt": "A bottle of Chianti at dinner in Tuscania",
       "description": "Dinner in Tuscania, at the same place we went to on the first evening. That time we had Morellino and Grechetto, and this time we asked for Chianti. They brought this bottle: Chianti D.O.C.G. from twenty twenty-four, “Buccia Nera”, the Campriano estate. Buccia nera means “black skin”, as they say of a dark grape. On the neck is a paper strip with the letters DOCG and a number; this is a state seal: every bottle of top-category wine in Italy is numbered. On the table is a wooden block with the number two, our table number, and a fork wrapped in a napkin.\n\nNow look at the beast on the green band of the label. A lion with bared jaws, something sticking up from its back, its tail curled. It looks very much like the Chimera of Arezzo, the most famous Etruscan bronze. The real Chimera has a goat's head on its back, and its tail ends in a snake. It was found in Arezzo in the sixteenth century, when the city walls were being built, and Duke Cosimo de' Medici took it for himself to Florence. The winery is from near Arezzo, so it took it as its emblem.\n\nIt turned out funny. The day before yesterday we spent the whole day walking around Etruscan tombs in Tarquinia, the next day we were heading to the Etruscan burial mounds in Cerveteri, and in between we sat down to dinner and the Etruscans turned up even on the bottle. We are, by the way, still not in Tuscany; Tuscania is in Lazio. But the wine is Tuscan, and it was good."
+    },
+    "photos/2026-11-13/1": {
+      "alt": "An Etruscan tumulus in the Cerveteri necropolis"
+    },
+    "photos/2026-11-13/2": {
+      "alt": "Along the stone base of a tumulus"
+    },
+    "photos/2026-11-13/3": {
+      "alt": "A path between the tumuli"
+    },
+    "photos/2026-11-13/4": {
+      "alt": "Steps down to a tomb entrance"
+    },
+    "photos/2026-11-13/5": {
+      "alt": "A road cut into the tuff, Banditaccia necropolis"
+    },
+    "photos/2026-11-13/6": {
+      "alt": "Andrey and Yana on the ancient road of the necropolis"
+    },
+    "photos/2026-11-13/7": {
+      "alt": "All three of us by the shuttle at Fiumicino"
     }
   }
 }

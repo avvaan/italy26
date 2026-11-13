@@ -195,6 +195,14 @@
       "lon": 12.1045,
       "kind": "town",
       "note": "Папский дворец"
+    },
+    {
+      "id": "cerveteri",
+      "name": "Черветери",
+      "lat": 42.007,
+      "lon": 12.102,
+      "kind": "site",
+      "note": "этрусский некрополь Бандитачча"
     }
   ],
   "pages": [
@@ -2796,11 +2804,83 @@
       "title": "Фьюмичино — Лиссабон",
       "stops": [
         "tuscania",
+        "cerveteri",
         "fiumicino",
         "lisbon"
       ],
       "text": [],
-      "photos": [],
+      "photos": [
+        {
+          "src": "photos/2026-11-13/1",
+          "alt": "Этрусский курган в некрополе Черветери",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1012,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-13/2",
+          "alt": "Вдоль каменного основания кургана",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1012,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-13/3",
+          "alt": "Тропинка между курганами",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1012,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-13/4",
+          "alt": "Ступени ко входу в гробницу",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1012,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-13/5",
+          "alt": "Дорога, вырубленная в туфе, некрополь Бандитачча",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1012,
+          "h": 1800,
+          "people": false,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-13/6",
+          "alt": "Андрей и Яна на древней дороге некрополя",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1012,
+          "h": 1800,
+          "people": true,
+          "approved": true
+        },
+        {
+          "src": "photos/2026-11-13/7",
+          "alt": "Все втроём у трансфера во Фьюмичино",
+          "caption": "",
+          "author": "Андрей",
+          "w": 1800,
+          "h": 1012,
+          "people": true,
+          "approved": true
+        }
+      ],
       "audio": []
     },
     {
